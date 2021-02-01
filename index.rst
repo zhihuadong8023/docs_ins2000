@@ -39,7 +39,7 @@ are also supported.
     :hidden:
     :titlesonly:
 
-    quick_start.rst
+    quick_start
 
 
 .. .. toctree::
