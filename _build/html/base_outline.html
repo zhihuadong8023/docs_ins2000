@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Basestation Guide &mdash; Aceinna INS2000 Developer Manual  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Reference Manual" href="ref_outline.html" />
+    <link rel="prev" title="Set Up &amp; Software Guide" href="user_outline.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Aceinna INS2000 Developer Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">INS1000 Developer Manual</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user_outline.html">Set Up &amp; Software Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Basestation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-the-base-station">2. Setting Up the Base Station</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">3. Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configure">3.1 Configure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sky-view">3.2 Sky View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#position-view">3.3 Position View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#export-data">3.4 Export data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ref_outline.html">Reference Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="system_setup_guide.html">System Setup Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Aceinna INS2000 Developer Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Basestation Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/base_outline.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="basestation-guide">
+<h1>Basestation Guide<a class="headerlink" href="#basestation-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The INS1000 GNSS Base Station is a ruggedized dual-frequency (L1/L2) multi-constellation GNSS (GPS, QZSS, GLONASS, Beidou, Galileo) reference station which can be easily configured as a local base station to broadcast real-time RTCM corrections for any RTK-capable rover systems. User-friendly GUI is available to setup a base station quickly by either connecting to the rover through local radio link or NTRIP caster/client (network RTK). The system can also record all tracked dual frequency multi-constellation measurements for post- processing.</p>
+</div>
+<div class="section" id="setting-up-the-base-station">
+<h2>2. Setting Up the Base Station<a class="headerlink" href="#setting-up-the-base-station" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/base_connectors.png"><img alt="_images/base_connectors.png" class="align-center" src="_images/base_connectors.png" style="width: 823.0px; height: 411.0px;" /></a>
+<p>To properly operate the Base Station the following ports must be connected in the correct locations.  See the picture above.</p>
+<ul class="simple">
+<li><p>Antenna to antenna port</p></li>
+<li><p>COM-PORT1 Cable to PC</p></li>
+<li><p>Power/Ethernet Cable to Power.</p></li>
+</ul>
+<p>The antenna should be mounted to an outdoor location such as roof with clear sky view.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Power/Ethernet cable connector has a red mark on it.  Match the red dot to the red mark on the mating connector shell.  To remove the cable just pull back lightly on the connector shell.</p>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>3. Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>This section give you insight on configuring the INS1000 Base Station Software. The first steps provide calibration information, real-time calculations, and different viewing options. It will go over all the settings, viewing options, and tools in the software. It also includes exporting information for further data analysis. For the Set Up to run smoothly, please read carefully and follow along the User Guide.</p>
+<div class="section" id="configure">
+<h3>3.1 Configure<a class="headerlink" href="#configure" title="Permalink to this headline">¶</a></h3>
+<p>Locate the GNSS basestation software.</p>
+<ul>
+<li><p>Run “pGnssBase.jar” software.</p></li>
+<li><p>Open “Com Port Settings” Window.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Click [Refresh] button</p></li>
+<li><p>Select the corresponding COMPORT from the drop-down tab.</p></li>
+<li><p>Click [Connect] button.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<a class="reference internal image-reference" href="_images/connect.png"><img alt="_images/connect.png" class="align-center" src="_images/connect.png" style="width: 297.0px; height: 181.0px;" /></a>
+<ul class="simple">
+<li><p>Click [Surveying] Tab</p></li>
+<li><p>Check/Click [Average Position]</p></li>
+<li><p>Wait until the count reaches the desired Avg. time (recommend at least 300 counts ~= 5min)</p></li>
+<li><p>Unclick/Uncheck [Average Position]</p></li>
+<li><p>Click [Copy to ref Position] Button</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/config.png"><img alt="_images/config.png" class="align-center" src="_images/config.png" style="width: 284.0px; height: 345.0px;" /></a>
+<ul class="simple">
+<li><p>On Settings window, switch to [Ref Position] tab, previous surveying position will show up here.</p></li>
+<li><p>Click [Set] button to send the position to base station receiver.</p></li>
+<li><p>Click [Query] button to double check or check the current position stored inside the base station receiver.</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/setposition.png"><img alt="_images/setposition.png" class="align-center" src="_images/setposition.png" style="width: 305.0px; height: 354.0px;" /></a>
+<ul>
+<li><p>On Settings window, switch to [Output] tab,</p></li>
+<li><p>Click [Set] once to setup broadcast correct message format for RTK rover.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>This step only need to be done once when the base station is first setup or the format has to be changed</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<a class="reference internal image-reference" href="_images/setoutput.png"><img alt="_images/setoutput.png" class="align-center" src="_images/setoutput.png" style="width: 301.0px; height: 349.0px;" /></a>
+<ul class="simple">
+<li><p>On Settings window, switch to “NTRIP Caster” tab.</p></li>
+<li><p>After filling in the server host information, Click [Set] button.</p></li>
+<li><p>You can also Click [Query] button to check the currentserver host information stored inside the base station receiver through the Ethernet/Modem</p></li>
+</ul>
+<a class="reference internal image-reference" href="_images/ntrip.png"><img alt="_images/ntrip.png" class="align-center" src="_images/ntrip.png" style="width: 289.0px; height: 348.0px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the base station has successfully connected to the server and started to stream the correction message, the red spot next to the “Mount Point” will turn into green color.</p>
+</div>
+</div>
+<div class="section" id="sky-view">
+<h3>3.2 Sky View<a class="headerlink" href="#sky-view" title="Permalink to this headline">¶</a></h3>
+<p>Sky View shows the distribution of satellites in real time based on the elevation and azimuth.</p>
+<p>To view Satellite details:</p>
+<ol class="arabic simple">
+<li><p>Double Click one satellite and it shows the elevation and azimuth information.</p></li>
+<li><p>Click that satellite and it the elevation and azimuth information will disappear.</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/skyview.png"><img alt="_images/skyview.png" class="align-center" src="_images/skyview.png" style="width: 562.0px; height: 476.0px;" /></a>
+</div>
+<div class="section" id="position-view">
+<h3>3.3 Position View<a class="headerlink" href="#position-view" title="Permalink to this headline">¶</a></h3>
+<p>Shows the current position after opening the Position View.</p>
+<ol class="arabic simple">
+<li><p>After clicking the [Average Position] checkbox in [Settings] -&gt; [Surveying] Position View also shows the average position in real time.</p></li>
+<li><p>Average Position is represented with a yellow square within the graph.</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/positionview.png"><img alt="_images/positionview.png" class="align-center" src="_images/positionview.png" style="width: 563.0px; height: 471.0px;" /></a>
+</div>
+<div class="section" id="export-data">
+<h3>3.4 Export data<a class="headerlink" href="#export-data" title="Permalink to this headline">¶</a></h3>
+<p>Export data allows you to save a log file of the Base Station.</p>
+<ol class="arabic simple">
+<li><p>Choose a directory to save the log file of Base Station and then click [Start Export].</p></li>
+<li><p>Then Click [Stop Export] to finish the completed Export.</p></li>
+</ol>
+<a class="reference internal image-reference" href="_images/export.png"><img alt="_images/export.png" class="align-center" src="_images/export.png" style="width: 419.0px; height: 225.0px;" /></a>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ref_outline.html" class="btn btn-neutral float-right" title="Reference Manual" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="user_outline.html" class="btn btn-neutral float-left" title="Set Up &amp; Software Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, Aceinna Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

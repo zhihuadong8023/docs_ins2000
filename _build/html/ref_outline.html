@@ -1,0 +1,3932 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Reference Manual &mdash; Aceinna INS2000 Developer Manual  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Aceinna INS2000 Developer Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">About INS2000</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Overview</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Quick Start</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Aceinna INS2000 Developer Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Reference Manual</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ref_outline.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="reference-manual">
+<h1>Reference Manual<a class="headerlink" href="#reference-manual" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>INS1000 is an integrated navigation system consisting of an inertial measurement unit (IMU) and other sensors. Thus it can output continuously the position, velocity and attitude information of the vehicle. A dual-antenna GNSS receiver is used as the primary aiding sensor. Also supported is a distance measurement indicator (DMI) which can be attached to a wheel of the vehicle/robot to measure the rotation rate of the wheel. Integration of a DMI would give an improved solution in challenging environments: urban canyons, tunnels or indoor. This document explains how to use the system.</p>
+</div>
+<div class="section" id="the-imu-frame-and-the-body-frame">
+<h2>2. The IMU Frame and the Body Frame<a class="headerlink" href="#the-imu-frame-and-the-body-frame" title="Permalink to this headline">¶</a></h2>
+<p>The IMU frame is the frame in which the IMU’s measurement output is generated. The direction of the axes of an IMU can be identified using the accelerometer signal. When an accelerometer is placed in upward direction on a level surface, its output should be approximately 9.8 <span class="math notranslate nohighlight">\(m/s^{2}\)</span>.On the other hand, if it is place in downward direction, the output should be -9.8 <span class="math notranslate nohighlight">\(m/s^{2}\)</span>. The positive direction of all three axes of an IMU can be identified this way.</p>
+<p>The body frame is the frame in which the inertial navigation solution is generated. The center of the IMU frame coincides with that of the body frame. However, there can be differences in the attitude between the two frames due to physical limitations in the installation of the IMU. For a vehicle, the forward-right-down is typically the body frame of choice. Thus, there will be a rotation matrix <span class="math notranslate nohighlight">\(C_{IMU}^{b}\)</span> to transform the IMU measurements to the body frame and, for the example below, it is written as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}C_{IMU}^{b} = \begin{bmatrix}
+c_{11}&amp; c_{12} &amp; c_{13} \\
+c_{21}&amp; c_{22} &amp; c_{23}\\
+c_{31}&amp; c_{32} &amp; c_{33}
+\end{bmatrix}=\begin{bmatrix}
+0 &amp; 1 &amp; 0\\
+-1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\end{split}\]</div>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="_images/The_IMU_frame_and_the_body_frame.png"><img alt="_images/The_IMU_frame_and_the_body_frame.png" src="_images/The_IMU_frame_and_the_body_frame.png" style="width: 484.0px; height: 208.0px;" /></a>
+<p class="caption"><span class="caption-text">Figure 1: The IMU frame and the body frame</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>IMU X</p></th>
+<th class="head"><p>IMU Y</p></th>
+<th class="head"><p>IMU Z</p></th>
+<th class="head"><p>Transformation Matrix</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Forward</p></td>
+<td><p>Right</p></td>
+<td><p>Down</p></td>
+<td><p>[1,0,0; 0,1,0; 0,0,1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Forward</p></td>
+<td><p>Left</p></td>
+<td><p>Up</p></td>
+<td><p>[1,0,0; 0,-1,0; 0,0,-1]</p></td>
+</tr>
+<tr class="row-even"><td><p>Forward</p></td>
+<td><p>Down</p></td>
+<td><p>Left</p></td>
+<td><p>[1,0,0; 0,-1,0; 0,0,-1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Forward</p></td>
+<td><p>Up</p></td>
+<td><p>Right</p></td>
+<td><p>[1,0,0; 0,0,1; 0,-1,0]</p></td>
+</tr>
+<tr class="row-even"><td><p>Backward</p></td>
+<td><p>Left</p></td>
+<td><p>Down</p></td>
+<td><p>[-1,0,0; 0,-1,0; 0,0,1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Backward</p></td>
+<td><p>Right</p></td>
+<td><p>Up</p></td>
+<td><p>[-1,0,0; 0,1,0; 0,0,-1]</p></td>
+</tr>
+<tr class="row-even"><td><p>Backward</p></td>
+<td><p>Up</p></td>
+<td><p>Left</p></td>
+<td><p>[-1,0,0; 0,0,-1; 0,-1,0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Backward</p></td>
+<td><p>Down</p></td>
+<td><p>Right</p></td>
+<td><p>[-1,0,0; 0,0,1; 0,1,0]</p></td>
+</tr>
+<tr class="row-even"><td><p>Right</p></td>
+<td><p>Backward</p></td>
+<td><p>Down</p></td>
+<td><p>[0,-1,0; 1,0,0; 0,0,1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Right</p></td>
+<td><p>Forward</p></td>
+<td><p>Up</p></td>
+<td><p>[0,1,0; 1,0,0; 0,0,-1]</p></td>
+</tr>
+<tr class="row-even"><td><p>Right</p></td>
+<td><p>Up</p></td>
+<td><p>Backward</p></td>
+<td><p>[0,0,-1; 1,0,0; 0,-1,0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Right</p></td>
+<td><p>Down</p></td>
+<td><p>Forward</p></td>
+<td><p>[0,0,1; 1,0,0; 0,1,0]</p></td>
+</tr>
+<tr class="row-even"><td><p>Left</p></td>
+<td><p>Forward</p></td>
+<td><p>Down</p></td>
+<td><p>[0,1,0; -1,0,0; 0,0,1]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Left</p></td>
+<td><p>Backward</p></td>
+<td><p>Up</p></td>
+<td><p>[0,-1,0; -1,0,0; 0,0,-1]</p></td>
+</tr>
+<tr class="row-even"><td><p>Left</p></td>
+<td><p>Up</p></td>
+<td><p>Forward</p></td>
+<td><p>[0,0,1; -1,0,0; 0,-1,0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Left</p></td>
+<td><p>Down</p></td>
+<td><p>Backward</p></td>
+<td><p>[0,0,-1; -1,0,0; 0,1,0]</p></td>
+</tr>
+<tr class="row-even"><td><p>Up</p></td>
+<td><p>Forward</p></td>
+<td><p>Left</p></td>
+<td><p>[0,1,0; 0,0,-1; -1,0,0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Up</p></td>
+<td><p>Backward</p></td>
+<td><p>Right</p></td>
+<td><p>[0,-1,0; 0,0,1; -1,0,0]</p></td>
+</tr>
+<tr class="row-even"><td><p>Up</p></td>
+<td><p>Right</p></td>
+<td><p>Forward</p></td>
+<td><p>[0,0,1; 0,1,0; -1,0,0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Up</p></td>
+<td><p>Left</p></td>
+<td><p>Backward</p></td>
+<td><p>[0,0,-1; 0,-1,0; -1,0,0]</p></td>
+</tr>
+<tr class="row-even"><td><p>Down</p></td>
+<td><p>Forward</p></td>
+<td><p>Right</p></td>
+<td><p>[0,1,0; 0,0,1; 1,0,0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Down</p></td>
+<td><p>Backward</p></td>
+<td><p>Left</p></td>
+<td><p>[0,-1,0; 0,0,-1; 1,0,0]</p></td>
+</tr>
+<tr class="row-even"><td><p>Down</p></td>
+<td><p>Backward</p></td>
+<td><p>Left</p></td>
+<td><p>[0,-1,0; 0,0,-1; 1,0,0]</p></td>
+</tr>
+<tr class="row-odd"><td><p>Down</p></td>
+<td><p>Left</p></td>
+<td><p>Forward</p></td>
+<td><p>[0,0,1; 0,-1,0; 1,0,0]</p></td>
+</tr>
+<tr class="row-even"><td><p>Down</p></td>
+<td><p>Right</p></td>
+<td><p>Backward</p></td>
+<td><p>[0,0,-1; 0,1,0; 1,0,0]</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>Table 1: List of IMU to body frame transformation matrices</p>
+</div></blockquote>
+</div>
+<div class="section" id="measuring-lever-arm">
+<h2>3. Measuring Lever Arm<a class="headerlink" href="#measuring-lever-arm" title="Permalink to this headline">¶</a></h2>
+<p>The lever-arm is the relative position of other sensors from the center of the IMU. To make the measurement process easier, we make a cross-mark on top of the IMU housing and publishes the vector from the center of the IMU to the mark, <span class="math notranslate nohighlight">\(l_{I}^{IMU}\)</span>, which is called the internal lever-arm. Thus users can measure the relative position from the cross-mark to other sensors which is referred to as the external lever-arm in the body frame, <span class="math notranslate nohighlight">\(l_{E}^{b}\)</span>. Therefore, the total lever-arm vector is computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[C_{IMU}^{b}l_{I}^{IMU}+l_{E}^{b}\]</div>
+<p>The following methods can be used to precisely measure the lever-arms:</p>
+<ul class="simple">
+<li><p>Computer Aided Design (CAD) Software</p></li>
+<li><p>Close-range Photogrammetry</p></li>
+<li><p>Precision Surveying using total stations or theodolites together with GNSS</p></li>
+</ul>
+</div>
+<div class="section" id="ntrip-client">
+<h2>4. NTRIP Client<a class="headerlink" href="#ntrip-client" title="Permalink to this headline">¶</a></h2>
+<p>A base station can send out RTCM messages to support the RTK, which enables cm-level positioning accuracy. Networked Transport of RTCM via Internet Protocol (NTRIP) is a protocol to stream the RTCM data over the internet. The user can configure the NTRIP client settings using the control software.</p>
+</div>
+<div class="section" id="user-icd-messages">
+<h2>5. User ICD Messages<a class="headerlink" href="#user-icd-messages" title="Permalink to this headline">¶</a></h2>
+<p>As shown in Figure 2, all ICD messages are composed of header, payload and checksum parts. The header’s size is 6 bytes containing 2 sync bytes, message ID, message sub-ID and payload length.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 18%" />
+<col style="width: 41%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Header (6 bytes)</p></td>
+<td><p>Payload</p></td>
+<td><p>CheckSum (2 bytes)</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>Figure 2: Message structure</p>
+</div></blockquote>
+<p>The checksum shall be computed over the payload part using the Fletcher-16 algorithm as below sample code. Note that all multi-byte entries are written in little-endian format.</p>
+<div class="highlight-c++ notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">checksum_A</span> <span class="o">=</span> <span class="n">checksum_B</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">payload_length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">checksum_A</span> <span class="o">+=</span> <span class="n">payload</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">checksum_B</span> <span class="o">+=</span> <span class="n">checksum_A</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="kalman-filter-navigation-message-1-hz">
+<h3>5.1. Kalman Filter Navigation Message (1 Hz)<a class="headerlink" href="#kalman-filter-navigation-message-1-hz" title="Permalink to this headline">¶</a></h3>
+<p>This message is an output of the navigation message at the center of the IMU in 1 Hz synchronized with the GNSS measurements. If the inertial navigator is not running, however, this message contains GNSS-only solutions of the primary GNSS antenna.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 12%" />
+<col style="width: 42%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x01</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>91</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double</p></td>
+<td><p>GPS time; see Note 1</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>double</p></td>
+<td><p>Latitude</p></td>
+<td><p>radians</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>double</p></td>
+<td><p>Longitude</p></td>
+<td><p>radians</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>double</p></td>
+<td><p>Ellipsoidal height</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>double</p></td>
+<td><p>Velocity in north</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>double</p></td>
+<td><p>Velocity in east</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>double</p></td>
+<td><p>Velocity in down</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>double</p></td>
+<td><p>Roll, rotation about the x-axis</p></td>
+<td><p>radians</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>double</p></td>
+<td><p>Pitch, rotation about the y-axis</p></td>
+<td><p>radians</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>double</p></td>
+<td><p>Heading, rotation about the z-axis</p></td>
+<td><p>radians</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Position mode</p></td>
+<td><p>See Note 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Velocity mode</p></td>
+<td><p>See Note 2</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Attitude status</p></td>
+<td><p>0: Invalid, 1: Coarse, 2: Fine</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>21</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>GPS seconds since starting week; thus this will not rollover after 604800.</p></li>
+<li><dl class="simple">
+<dt>Position and velocity mode are defined as follows:</dt><dd><ul class="simple">
+<li><p>0: Invalid,</p></li>
+<li><p>1: Dead-reckoning (navigating with inertial measurements only),</p></li>
+<li><p>2: Stand-alone (autonomous or single point positioning),</p></li>
+<li><p>3: Precise point positioning (using precise ephemeris data)</p></li>
+<li><p>4: Code differential (using code-corrections from base stations or SBAS)</p></li>
+<li><p>5: RTK float</p></li>
+<li><p>6: RTK fixed</p></li>
+<li><p>7: User aiding (aiding by the user input)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="satellite-signal-strength">
+<h3>5.2. Satellite Signal Strength<a class="headerlink" href="#satellite-signal-strength" title="Permalink to this headline">¶</a></h3>
+<p>This message delivers the satellite signal strength information obtained from the GNSS observable.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 14%" />
+<col style="width: 42%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x02</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>19 + N_SV * 10</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double</p></td>
+<td><p>GPS time</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Receiver ID</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Antenna ID</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Number of satellites (N_SV)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SV system; see Note 1</p></td>
+<td rowspan="4"><blockquote>
+<div><p>First satellite data</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SVID; see Note 2</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>float</p></td>
+<td><p>L1 C/N0 (dB-Hz)</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>float</p></td>
+<td><p>L2 C/N0 (dB-Hz)</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SV system</p></td>
+<td rowspan="4"><blockquote>
+<div><p>Second satellite data</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SVID</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>float</p></td>
+<td><p>L1 C/N0 (dB-Hz)</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>float</p></td>
+<td><p>L2 C/N0 (dB-Hz)</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>0: GPS, 1: GLONASS, 2: Galileo, 3: QZSS, 4: Beidou, 5: SBAS</p></li>
+<li><p>SVID is the unique satellite number used in each satellite system; for GPS it is the PRN number and for GLONASS it is the SLOT number.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="sv-visibility">
+<h3>5.3. SV Visibility<a class="headerlink" href="#sv-visibility" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 18%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x03</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>18 + N_SV * 10</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double</p></td>
+<td><p>GPS time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Receiver number</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>N_SV</p></td>
+<td><p>Number of SV data</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SV system</p></td>
+<td rowspan="4"><blockquote>
+<div><p>First satellite data</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SVID</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>float</p></td>
+<td><p>Azimuth (deg)</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>float</p></td>
+<td><p>Elevation (deg)</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SV system</p></td>
+<td rowspan="4"><blockquote>
+<div><p>Second satellite data</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SVID</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>float</p></td>
+<td><p>Azimuth (deg)</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>float</p></td>
+<td><p>Elevation (deg)</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="install-parameters">
+<h3>5.4. Install Parameters<a class="headerlink" href="#install-parameters" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 18%" />
+<col style="width: 46%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x04</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>72+N_ANT*32</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double[3][3]</p></td>
+<td><p>IMU axes transformation matrix</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>N_ANT</p></td>
+<td><p>Number of antennas</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>double[3]</p></td>
+<td><p>Lever-arm vector of 1st antenna</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>double</p></td>
+<td><p>Lever-arm variance of 1st antenna</p></td>
+<td><p><span class="math notranslate nohighlight">\(m^{2}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>double[3]</p></td>
+<td><p>Lever-arm vector of 2nd antenna</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>double</p></td>
+<td><p>Lever-arm variance of 2nd antenna</p></td>
+<td><p><span class="math notranslate nohighlight">\(m^{2}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nav-uncertainty-message">
+<h3>5.5. Nav Uncertainty Message<a class="headerlink" href="#nav-uncertainty-message" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 38%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double</p></td>
+<td><p>Position RMS</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>double</p></td>
+<td><p>Velocity RMS</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>double</p></td>
+<td><p>Attitude RMS</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="product-id-message">
+<h3>5.6. Product ID Message<a class="headerlink" href="#product-id-message" title="Permalink to this headline">¶</a></h3>
+<p>This message contains the identification number of the product. To receive this message send the message defined in Section 8.1.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 38%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x06</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Product ID</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="navigation-data-message-high-rate">
+<h3>5.7. Navigation Data Message (High Rate)<a class="headerlink" href="#navigation-data-message-high-rate" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 14%" />
+<col style="width: 42%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x07</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>99</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double</p></td>
+<td><p>GPS time of week</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>double</p></td>
+<td><p>Latitude</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>double</p></td>
+<td><p>Longitude</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>double</p></td>
+<td><p>Ellipsoidal height</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>double[3]</p></td>
+<td><p>Velocity in NED</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>double[4]</p></td>
+<td><p>Body to NED attitude quaternion</p></td>
+<td><p>See Note 1 in Section 6.13</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Alignment mode</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>uint16_t</p></td>
+<td><p>GPS week number</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="scaled-raw-imu-data">
+<h3>5.8. Scaled Raw IMU Data<a class="headerlink" href="#scaled-raw-imu-data" title="Permalink to this headline">¶</a></h3>
+<p>This message contains scaled raw IMU data. The reference frame of this data is the IMU frame.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 22%" />
+<col style="width: 31%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x08</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>56</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double[3]</p></td>
+<td><p>Acceleration</p></td>
+<td><p><span class="math notranslate nohighlight">\(m/s^{2}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>double[3]</p></td>
+<td><p>Rotation rate</p></td>
+<td><p>degrees/s</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="solution-status-1-hz">
+<h3>5.9. Solution Status (1 Hz)<a class="headerlink" href="#solution-status-1-hz" title="Permalink to this headline">¶</a></h3>
+<p>This message shows the Kalman filter solution status. The RMS of the position, velocity and attitude is the squre-root of the diagonal elements of the covariance matrix of the Kalman filter.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 14%" />
+<col style="width: 64%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x09</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>92</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Number of SVs used</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Processing mode</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint16_t</p></td>
+<td><p>GPS week number; if 0 time is not synced to GPS</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>double</p></td>
+<td><p>GPS time of week</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>double[3]</p></td>
+<td><p>Position RMS (NED)</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>double[3]</p></td>
+<td><p>Velocity RMS (NED)</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>double[3]</p></td>
+<td><p>Attitude RMS (NED)</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="repackaged-gsv-message">
+<h3>5.10. Repackaged GSV Message<a class="headerlink" href="#repackaged-gsv-message" title="Permalink to this headline">¶</a></h3>
+<p>This is a repackaged NMEA GSV message generated by the receiver.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 21%" />
+<col style="width: 27%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x0A</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>length 12 + N_SV * 5</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Receiver number</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Antenna ID</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SV system</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>N_SV</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SVID</p></td>
+<td><p>SVID of 1st SV</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Elevation</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Azimuth</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SNR</p></td>
+<td><p>db-Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SVID</p></td>
+<td><p>SVID of 2nd SV</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Elevation</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Azimuth</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>uint8_t</p></td>
+<td><p>SNR</p></td>
+<td><p>db-Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="vehicle-dynamics-message">
+<h3>5.11. Vehicle Dynamics Message<a class="headerlink" href="#vehicle-dynamics-message" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 13%" />
+<col style="width: 67%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x0B</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>67</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double</p></td>
+<td><p>GPS time of week</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>double[3]</p></td>
+<td><p>Acceleration in body frame. See Note 2 in Section 6.13</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>double[3]</p></td>
+<td><p>Rotation rate in body frame. See Note 3 in Section 6.13</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint16_t</p></td>
+<td><p>GPS week number</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Alignment mode</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="distance-measurement-indicator-data12">
+<h3>5.12. Distance Measurement Indicator Data12<a class="headerlink" href="#distance-measurement-indicator-data12" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 38%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x0C</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>13</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>int32_t</p></td>
+<td><p>Pulse count</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>DMI ID</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="compact-navigation-message-high-rate">
+<h3>5.13. Compact Navigation Message (High Rate)<a class="headerlink" href="#compact-navigation-message-high-rate" title="Permalink to this headline">¶</a></h3>
+<p>This message is a high-rate real-time navigation output at the position defined by the user.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 10%" />
+<col style="width: 51%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x0D</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>119</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System time if week = 0, otherwise GPS timeof week</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double</p></td>
+<td><p>Latitude</p></td>
+<td><p>degrees</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>double</p></td>
+<td><p>Longitude</p></td>
+<td><p>degrees</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>float</p></td>
+<td><p>Ellipsoidal height</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>float[3]</p></td>
+<td><p>Velocity in North, East, Down</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>float[4]</p></td>
+<td><p>Attitude quaternion; see Note 1</p></td>
+<td><p>Scalar, X, Y, Z</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>float[3]</p></td>
+<td><p>Acceleration in body frame; see Note 2</p></td>
+<td><p>m/s2</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>float[3]</p></td>
+<td><p>Rotation rate in body frame; see Note 3</p></td>
+<td><p>degrees/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>float[3]</p></td>
+<td><p>Position RMS in NED</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>float[3]</p></td>
+<td><p>Velocity RMS in NED</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>float[3]</p></td>
+<td><p>Attitude RMS in NED</p></td>
+<td><p>degrees</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>uint16_t</p></td>
+<td><p>GPS week number</p></td>
+<td><p>If 0 time is not synced to GPS</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Alignment status</p></td>
+<td><p>0: Invalid, 1: Coarse, 2: Fine</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>Attitude quaternion for the transformation from the body frame to the NED frame, <span class="math notranslate nohighlight">\(q_{b}^{n}\)</span>. Note that the quaternion in ROS is defined as (X, Y, Z, scalar). The DCM corresponding to <span class="math notranslate nohighlight">\(q_{b}^{n}\)</span> can be computed as follows:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[\begin{split}C_{b}^{n} = \begin{bmatrix}
+q_{0}^{2}+ q_{1}^{2}- q_{2}^{2}- q_{3}^{2} &amp; 2(q_{1}q_{2}-q_{0}q_{3})  &amp; 2(q_{1}q_{3}+q_{0}q_{2}) \\
+2(q_{1}q_{2}+q_{0}q_{3})&amp;  q_{0}^{2}- q_{1}^{2}+q_{2}^{2}- q_{3}^{2}  &amp; 2(q_{2}q_{3}-q_{0}q_{1})\\
+2(q_{1}q_{3}-q_{0}q_{2}) &amp; 2(q_{2}q_{3}+q_{0}q_{1}) &amp;  q_{0}^{2}-q_{1}^{2}- q_{2}^{2}+ q_{3}^{2}
+\end{bmatrix}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(q_{i}\)</span> are elements of <span class="math notranslate nohighlight">\(q_{b}^{n}\)</span>. Let  <span class="math notranslate nohighlight">\(C_{b}^{n} = \begin{Bmatrix}c_{ij}\end{Bmatrix}\)</span> then if <span class="math notranslate nohighlight">\(\begin{vmatrix}c_{31}\end{vmatrix}&lt; 0.9999\)</span> the Euler angles can be computed as follows:</p>
+<div class="math notranslate nohighlight">
+\[\phi =atan2(c_{32},c_{33})\]</div>
+<div class="math notranslate nohighlight">
+\[\Theta = atan\begin{pmatrix}-c_{31}/\sqrt{c_{32}^{2}+c_{33}^{2}}\end{pmatrix}\]</div>
+<div class="math notranslate nohighlight">
+\[\psi = atan2(c_{21},c_{11})\]</div>
+<p>where <span class="math notranslate nohighlight">\(\phi\)</span>, <span class="math notranslate nohighlight">\(\Theta\)</span> and <span class="math notranslate nohighlight">\(\psi\)</span> are the roll, pitch and heading, respectively.</p>
+<ol class="arabic simple" start="2">
+<li><p>Acceleration output is corrected for the gravity, Coriolis force and the estimated accelerometer biases: <span class="math notranslate nohighlight">\(f^{b}-b_{a}+C_{e}^{b}(g^{e}-2w_{ie}^{e}\times v^{e} )\)</span> where <span class="math notranslate nohighlight">\(f^{b}\)</span> is the specific force measurement from the IMU, <span class="math notranslate nohighlight">\(b_{a}\)</span> estimated accelerometer bias, <span class="math notranslate nohighlight">\(C_{e}^{b}\)</span> the DCM for the transformation from the ECEF to the body frame, <span class="math notranslate nohighlight">\(g^{e}\)</span> the gravity vector computed from the model, <span class="math notranslate nohighlight">\(w_{ie}^{e}\)</span> the earth’s rotation rate vector, and  <span class="math notranslate nohighlight">\(v^{e}\)</span> the velocity vector.</p></li>
+<li><p>Rotation rate output is corrected for the earth rotation rate and the estimated gyro biases, i.e., <span class="math notranslate nohighlight">\(w_{ie}^{e}\)</span>.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="nmea-pecnm-message">
+<h3>5.14. NMEA PECNM Message<a class="headerlink" href="#nmea-pecnm-message" title="Permalink to this headline">¶</a></h3>
+<p>This message is NMEA style text message corresponding to the message in Section 5.13.</p>
+</div>
+<div class="section" id="nmea-gprmc-message">
+<h3>5.15. NMEA GPRMC Message<a class="headerlink" href="#nmea-gprmc-message" title="Permalink to this headline">¶</a></h3>
+<p>This is the NMEA GPRMC message generated by the primary GNSS receiver.</p>
+</div>
+<div class="section" id="time-sync-message">
+<h3>5.16. Time Sync Message<a class="headerlink" href="#time-sync-message" title="Permalink to this headline">¶</a></h3>
+<p>This message contains the time sync message between the system time and GPS time. It gets generated at every PPS event. The GPS time corresponding to the system time can be obtained by</p>
+<blockquote>
+<div><p>GPS time = System computer time - Bias</p>
+</div></blockquote>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 18%" />
+<col style="width: 54%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x10</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System computer time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double</p></td>
+<td><p>Bias with respect to GPS time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="raw-gnss-data-message">
+<h3>5.17. Raw GNSS Data Message<a class="headerlink" href="#raw-gnss-data-message" title="Permalink to this headline">¶</a></h3>
+<p>This message contains raw data generated by the GNSS receivers.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 24%" />
+<col style="width: 44%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x11</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>10+N</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>System computer time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Receiver number</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Receiver type</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t[N]</p></td>
+<td><p>Raw GNSS data</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="engine-version-message">
+<h3>5.18. Engine Version Message<a class="headerlink" href="#engine-version-message" title="Permalink to this headline">¶</a></h3>
+<p>This message shows the engine version of the system. To receive this message the user needs to send an 8-byte binary message “0xAF 0x02 0x06 0x0B 0x01 0x02 0x02 0x02” to the system.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 20%" />
+<col style="width: 47%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x12</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>char[N]</p></td>
+<td><p>Engine version string</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gnss-receiver-acknowledge-message">
+<h3>5.19. GNSS Receiver Acknowledge Message<a class="headerlink" href="#gnss-receiver-acknowledge-message" title="Permalink to this headline">¶</a></h3>
+<p>This message shows the acknowledge response from a GNSS receiver.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 23%" />
+<col style="width: 40%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x13</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Receiver number</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Receiver type</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gnss-antenna-lever-arm-calibration-data">
+<h3>5.20. GNSS Antenna Lever-Arm Calibration Data<a class="headerlink" href="#gnss-antenna-lever-arm-calibration-data" title="Permalink to this headline">¶</a></h3>
+<p>Although it is recommended to accurately measure the lever-arms, sometimes it is very difficult to measure them. In this case the user can let the system calibrate the lever-arm vector. The calibration, however, must be done in an open-sky area with RTK enabled. For the primary antenna, the trajectory must include frequent turns, up-hill or down-hill driving for a considerably long time (one hour or more). Thus it would be the best to measure precisely with other instruments. Also the dual-antenna solution cannot be used in the solution during the calibration mode. So the INS initialization must be done with GNSS velocity.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 16%" />
+<col style="width: 46%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x14</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>57</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>Internal computer time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double[3]</p></td>
+<td><p>Lever arm vector in body frame</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>double[3]</p></td>
+<td><p>Variance</p></td>
+<td><p>m2</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Antenna indicator; see Note 1</p></td>
+<td><p>0: pri, 1: sec-pri</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>When antenna indicator is ‘1’ the message outputs the vector from the primary to the secondary antenna in the body frame. To get the lever-arm of the secondary antenna, the primary lever-arm vector must be added. Shown in Figure is a plot of this message for a lever-arm of the secondary antenna with respect to the primary antenna. It is recommended to take the mean values after the convergence.</p></li>
+</ol>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="_images/Example_of_a_lever-arm_calibration.png"><img alt="_images/Example_of_a_lever-arm_calibration.png" src="_images/Example_of_a_lever-arm_calibration.png" style="width: 613.0px; height: 423.0px;" /></a>
+<p class="caption"><span class="caption-text">Figure 4: The IMU frame and the body frame</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="dmi-lever-arm-calibration-data">
+<h3>5.21. DMI Lever-Arm Calibration Data<a class="headerlink" href="#dmi-lever-arm-calibration-data" title="Permalink to this headline">¶</a></h3>
+<p>TBD.</p>
+</div>
+<div class="section" id="geoid-height">
+<h3>5.22. Geoid Height<a class="headerlink" href="#geoid-height" title="Permalink to this headline">¶</a></h3>
+<p>This message outputs the Geoid height, which is the height of Geoid above the ellipsoid. The height above Geoid, treated normally as the height above mean sea level (MSL), can be computed as follows:</p>
+<blockquote>
+<div><p>Height above MSL = Height above ellipsoid - Geoid height</p>
+</div></blockquote>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 38%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x16</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>GPS time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>float</p></td>
+<td><p>Geoid height</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="corrected-imu-data">
+<h3>5.23. Corrected IMU Data<a class="headerlink" href="#corrected-imu-data" title="Permalink to this headline">¶</a></h3>
+<p>This message contains IMU data corrected for the sensor biases estimated by the fusion algorithm. Note that the effect of the gravity and the Earth’s rotation rate is still included in the sensor data. The reference frame of this data is the user body frame and thus the rotation from the IMU frame to the user body frame is applied.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 23%" />
+<col style="width: 38%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x17</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>58</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>GPS time of week</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double[3]</p></td>
+<td><p>Acceleration</p></td>
+<td><p>m/s2</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>double[3]</p></td>
+<td><p>Rotation rate</p></td>
+<td><p>degrees/s</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint16_t</p></td>
+<td><p>GPS week number</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gps-utc-time-offset">
+<h3>5.24. GPS-UTC Time Offset<a class="headerlink" href="#gps-utc-time-offset" title="Permalink to this headline">¶</a></h3>
+<p>This message contains the offset between the GPS time and the UTC. Note that GPS time is ahead of the UTC, which is called the leap seconds.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 20%" />
+<col style="width: 47%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x18</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint8_t</p></td>
+<td><p>GPS - UTC time offset</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="nmea-gga-message">
+<h3>5.25. NMEA GGA Message<a class="headerlink" href="#nmea-gga-message" title="Permalink to this headline">¶</a></h3>
+<p>This is the NMEA GGA message generated by the primary GNSS receiver.</p>
+</div>
+</div>
+<div class="section" id="system-diagnostic-messages">
+<h2>6. System Diagnostic Messages<a class="headerlink" href="#system-diagnostic-messages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="text-message">
+<h3>6.1. Text Message<a class="headerlink" href="#text-message" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 38%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x07</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>N</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>char[N]</p></td>
+<td><p>Text</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="sensor-message-count">
+<h3>6.2. Sensor Message Count<a class="headerlink" href="#sensor-message-count" title="Permalink to this headline">¶</a></h3>
+<p>This message indicates the activity of each sub-system thus it can be used to monitor the system.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 27%" />
+<col style="width: 41%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x07</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x01</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint16_t</p></td>
+<td><p>IMU message count</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint16_t</p></td>
+<td><p>GNSS message count</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint16_t</p></td>
+<td><p>PPS count</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint16_t[5]</p></td>
+<td><p>Reserved</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="external-event-messages">
+<h2>7. External Event Messages<a class="headerlink" href="#external-event-messages" title="Permalink to this headline">¶</a></h2>
+<p>This section defines messages that users can send to the system to improve the navigation performance.</p>
+<div class="section" id="zero-velocity-update-event">
+<h3>7.1. Zero Velocity Update Event<a class="headerlink" href="#zero-velocity-update-event" title="Permalink to this headline">¶</a></h3>
+<p>The user can send zero velocity update (ZUPT) messages when the vehicle is not moving. Especially, this will improve the navigation system where the GNSS signal is degraded. For the ZUPT message to be effective, it shall be sent at a rate higher than 2 Hz (recommended rate is 3 Hz).</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 15%" />
+<col style="width: 46%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x09</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x01</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Horizontal Standard Deviation</p></td>
+<td><p>mm/s (0: Invalid)</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Vertical Standard Deviation</p></td>
+<td><p>mm/s (0: Invalid)</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="static-heading-event">
+<h3>7.2. Static Heading Event<a class="headerlink" href="#static-heading-event" title="Permalink to this headline">¶</a></h3>
+<p>This message can be used to initialize the inertial navigator when the position is available from the GNSS receivers but the heading initialization has difficulties due to degraded GNSS signals. For this message to be effective, it shall be sent at a rate higher than 2 Hz (recommended rate is 3 Hz).</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 18%" />
+<col style="width: 29%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x09</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x02</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>int16_t</p></td>
+<td><p>Heading</p></td>
+<td><p>0.01 degrees</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint16_t</p></td>
+<td><p>ZUPT RMS</p></td>
+<td><p>mm/s (0: Invalid)</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Heading RMS</p></td>
+<td><p>0.1 deg (0: Invalid)</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="static-geo-pose-event">
+<h3>7.3. Static Geo-Pose Event<a class="headerlink" href="#static-geo-pose-event" title="Permalink to this headline">¶</a></h3>
+<p>This message can be used to initialize or aid the inertial navigation system when GNSS signals are not available. For this message to be effective, it shall be sent at a rate higher than 2 Hz (recommended rate is 3 Hz).</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 16%" />
+<col style="width: 32%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x09</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x03</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>Latitude</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>double</p></td>
+<td><p>Longitude</p></td>
+<td><p>deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>float</p></td>
+<td><p>Ellipsoidal height</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>int16_t</p></td>
+<td><p>Roll</p></td>
+<td><p>0.01 degrees</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>int16_t</p></td>
+<td><p>Pitch</p></td>
+<td><p>0.01 degrees</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>int16_t</p></td>
+<td><p>Heading</p></td>
+<td><p>0.01 degrees</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Position RMS</p></td>
+<td><p>cm (0: Invalid position)</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>uint16_t</p></td>
+<td><p>ZUPT RMS</p></td>
+<td><p>mm/s (0: Invalid)</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Heading RMS</p></td>
+<td><p>0.1 deg (0: Invalid)</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Flags</p></td>
+<td><p>See Note 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>The first LSB (0x01) is used to denote the validity of the roll and pitch; the second LSB (0x02) is used to disable GNSS measurements.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="wheel-speed-event">
+<h3>7.4. Wheel Speed Event<a class="headerlink" href="#wheel-speed-event" title="Permalink to this headline">¶</a></h3>
+<p>Users can input a wheel speed of their vehicle to improve the navigation performance. For this message to be effective, it shall be sent at a rate higher than 2 Hz.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 17%" />
+<col style="width: 28%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x09</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x04</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>15</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>double</p></td>
+<td><p>Time</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>float</p></td>
+<td><p>Speed</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Speed RMS</p></td>
+<td><p>mm/s (0: Invalid speed)</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Flags</p></td>
+<td><p>See Note 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>Usage of flags.</p></li>
+</ol>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/Usage_of_flags.png"><img alt="_images/Usage_of_flags.png" src="_images/Usage_of_flags.png" style="width: 345.0px; height: 120.0px;" /></a>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="system-configuration-messages">
+<h2>8. System Configuration Messages<a class="headerlink" href="#system-configuration-messages" title="Permalink to this headline">¶</a></h2>
+<p>This chapter describes the messages to get the information about the system or to configure the system without using the control software.</p>
+<div class="section" id="antenna-separation">
+<h3>8.1. Antenna Separation<a class="headerlink" href="#antenna-separation" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 15%" />
+<col style="width: 48%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x06</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x06</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>04</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type of the request</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID of the request</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Response</p></td>
+<td><p>1: ACK, 2: NACK</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Reserved</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="user-configuration-setup">
+<h3>8.2. User Configuration Setup<a class="headerlink" href="#user-configuration-setup" title="Permalink to this headline">¶</a></h3>
+<p>Send the following message to request the product ID.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 38%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x06</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x0B</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>0x01</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Topic</p></td>
+<td><p>0x01</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id1">
+<h3>8.3. Antenna Separation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>This message sets the separation between two antennas, which will aid the ambiguity resolution for the attitude determination.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 38%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x06</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x0D</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Topic</p></td>
+<td><p>0x07</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Antenna ID 1</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Antenna ID 2</p></td>
+<td><p>0x01</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Reserved</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>float</p></td>
+<td><p>Separation</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id2">
+<h3>8.4. User Configuration Setup<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>This message is used to setup the user configuration which controls the behavior of the navigator. The system will respond with the message in Section 8.1. For this to take effect, the user needs to restart the system after sending this message.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 33%" />
+<col style="width: 47%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x06</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x0D</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p><span class="math notranslate nohighlight">\(93+12n_{A}+2n_{M} or 114+12n_{A}+2n_{M}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Topic</p></td>
+<td><p>0x0A</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Aiding sensor indicators</p></td>
+<td><p>See Note 1</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Flags</p></td>
+<td><p>See Note 2</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Number of User ICD messages to configure ( <span class="math notranslate nohighlight">\(n_{M}\)</span>)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Minimum GNSS velocity for heading initialization</p></td>
+<td><p>m/s</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Maximum dead-reckon time; the system will stop outputting the navigation solution if the dead-reckoning time exceeds this limit.</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Maximum Nav Output Rate</p></td>
+<td><p>0.1 Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>double[3][3]</p></td>
+<td><p>IMU to user-frame rotation matrix ( <span class="math notranslate nohighlight">\(C_{IMU}^{b}\)</span> )</p></td>
+<td><p>In row-major order</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>int32_t[3]</p></td>
+<td><p>Output position offset</p></td>
+<td><p>1.0e-4 m</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>int32_t[ <span class="math notranslate nohighlight">\(n_{A}\)</span>][3]</p></td>
+<td><p>GNSS antenna lever arm in the user body frame</p></td>
+<td><p>1.0e-4 m</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td colspan="2"><p>User ICD message configuration block; exists only if <span class="math notranslate nohighlight">\(n_{M} &gt; 0\)</span> .</p></td>
+<td><p>See Note 3</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td colspan="2"><p>DMI configuration block; exists only if the DMI bit is set in the aiding sensor indicators.</p></td>
+<td><p>See Note 4</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>Aiding sensor indicators:</p></li>
+</ol>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Bits</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1-2</p></td>
+<td><p>Number of GNSS antennas (nA)</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>DMI exists</p></td>
+</tr>
+<tr class="row-even"><td><p>4-8</p></td>
+<td><p>Reserved</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="2">
+<li><p>Usage of flags:</p></li>
+</ol>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 97%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Bits</p></th>
+<th class="head"><p>Usage</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Initialize heading from GNSS velocity; to activate this option the x-axis of the user body frame must be aligned with the forward direction of the vehicle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Enable static position pinning; the system will output a fixed position during a static period detected by the GNSS. Note that there is a chance that the system can miss the detection if the signal quality becomes bad.</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>If set the entered GNSS antenna lever-arm is w.r.t. the IMU housing mark; otherwise it is w.r.t. the center of the IMU.</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>If set the entered output position lever-arm is w.r.t. the IMU housing mark; otherwise it is w.r.t. the center of the IMU.</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>If set the entered DMI antenna lever-arm is w.r.t. the IMU housing mark; otherwise it is w.r.t. the center of the IMU.</p></td>
+</tr>
+<tr class="row-odd"><td><p>6-8</p></td>
+<td><p>Reserved</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li><p>User ICD message configuration block; care needs to be taken when choosing high-rate outputs as outputting multiple high-rate messages can saturate the communication port.</p></li>
+</ol>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 12%" />
+<col style="width: 32%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sub-ID for message 1</p></td>
+<td><p>See Section 5</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Port ID for message 1</p></td>
+<td><p>See below for port ID definition</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>…</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sub-ID for message nM</p></td>
+<td><p>See Section 5</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Port ID for message nM</p></td>
+<td><p>See below for port ID definition</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Port ID</p></th>
+<th class="head"><p>Definition</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x00</p></td>
+<td><p>Invalid, the output is turned off</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x01</p></td>
+<td><p>Ethernet</p></td>
+</tr>
+<tr class="row-even"><td><p>0x02</p></td>
+<td><p>UART0</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x04</p></td>
+<td><p>UART1</p></td>
+</tr>
+<tr class="row-even"><td><p>0x80</p></td>
+<td><p>Internal Log</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="4">
+<li><p>DMI configuration block:</p></li>
+</ol>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 18%" />
+<col style="width: 27%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>DMI ID</p></td>
+<td><p>0: Invalid, otherwise valid</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>double</p></td>
+<td><p>DMI scale factor</p></td>
+<td><p>pulse/m</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>int32_t[3]</p></td>
+<td><p>DMI lever-arm</p></td>
+<td><p>1.0e-4 m</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="user-configuration-query">
+<h3>8.5. User Configuration Query<a class="headerlink" href="#user-configuration-query" title="Permalink to this headline">¶</a></h3>
+<p>The system will send the current configuration if it receives the following message:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 38%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x06</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x0B</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>0x01</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The format of the response will be the same as the one in Section 8.4 except that the message sub-ID is 0x0C. If it fails to read the stored configuration, it will respond with the message in Section 8.1 with NACK.</p>
+</div>
+<div class="section" id="ip-address-of-the-system">
+<h3>8.6. IP Address of the System<a class="headerlink" href="#ip-address-of-the-system" title="Permalink to this headline">¶</a></h3>
+<p>Users can query the IP address of the system by sending the following message:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 38%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x06</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x0B</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>0x01</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Topic</p></td>
+<td><p>0x0B</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>If the Ethernet port is connected, the system will respond with the following message:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 27%" />
+<col style="width: 36%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 1</p></td>
+<td><p>0xAF</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Sync 2</p></td>
+<td><p>0x20</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message type</p></td>
+<td><p>0x06</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Message sub-ID</p></td>
+<td><p>0x0C</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>uint16_t</p></td>
+<td><p>Payload length</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Topic</p></td>
+<td><p>0x0B</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>uint8_t[4]</p></td>
+<td><p>IP Address</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum A</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Checksum B</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>If the port is not connected the system will send out an NACK message in Section 8.1 with the ‘Reserved’ field 0x0B.</p>
+</div>
+</div>
+<div class="section" id="canbus-messages">
+<h2>9. CANBUS Messages<a class="headerlink" href="#canbus-messages" title="Permalink to this headline">¶</a></h2>
+<p>Defined in this section are the messages to be sent through the CANBUS.</p>
+<div class="section" id="message-id-0x001">
+<h3>9.1 Message ID 0x001<a class="headerlink" href="#message-id-0x001" title="Permalink to this headline">¶</a></h3>
+<p>This message contains the system time of the navigation data.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 25%" />
+<col style="width: 35%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint32_t</p></td>
+<td><p>Seconds</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint32_t</p></td>
+<td><p>Nano seconds</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x002">
+<h3>9.2 Message ID 0x002<a class="headerlink" href="#message-id-0x002" title="Permalink to this headline">¶</a></h3>
+<p>This message contains the GPS seconds of the week of the navigation message.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 25%" />
+<col style="width: 35%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint32_t</p></td>
+<td><p>Seconds</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint32_t</p></td>
+<td><p>Nano seconds</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x003">
+<h3>9.3 Message ID 0x003<a class="headerlink" href="#message-id-0x003" title="Permalink to this headline">¶</a></h3>
+<p>This message contains the horizontal position of the vehicle.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 17%" />
+<col style="width: 24%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>int32_t</p></td>
+<td><p>Latitude</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-7}\)</span> deg/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>int32_t</p></td>
+<td><p>Longitude</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-7}\)</span> deg/bit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x004">
+<h3>9.4 Message ID 0x004<a class="headerlink" href="#message-id-0x004" title="Permalink to this headline">¶</a></h3>
+<p>This message contains the horizontal velocity.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 16%" />
+<col style="width: 34%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>int32_t</p></td>
+<td><p>Velocity in North</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-4}\)</span> m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>int32_t</p></td>
+<td><p>Velocity in East</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-4}\)</span> m/s</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x005">
+<h3>9.5 Message ID 0x005<a class="headerlink" href="#message-id-0x005" title="Permalink to this headline">¶</a></h3>
+<p>This message contains the vertical position and velocity.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 35%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>int32_t</p></td>
+<td><p>Ellipsoidal height</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-4}\)</span> m</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>int32_t</p></td>
+<td><p>Velocity in Down</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-4}\)</span> m/s</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x006">
+<h3>9.6 Message ID 0x006<a class="headerlink" href="#message-id-0x006" title="Permalink to this headline">¶</a></h3>
+<p>This message contains the roll and pith of the vehicle.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 18%" />
+<col style="width: 26%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>int32_t</p></td>
+<td><p>Roll</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-6}\)</span> deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>int32_t</p></td>
+<td><p>Pitch</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-6}\)</span> deg</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x007">
+<h3>9.7 Message ID 0x007<a class="headerlink" href="#message-id-0x007" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 13%" />
+<col style="width: 36%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>int32_t</p></td>
+<td><p>Heading</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-6}\)</span> deg</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint16_t</p></td>
+<td><p>GPS week number</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Alignment status</p></td>
+<td><p>0: Invalid, 1: Coarse, 2: Fine</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>uint8_t</p></td>
+<td><p>Roll, pitch heading status</p></td>
+<td><p>0: Invalid, 1: Valid</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x008">
+<h3>9.8 Message ID 0x008<a class="headerlink" href="#message-id-0x008" title="Permalink to this headline">¶</a></h3>
+<p>This message contains x-components of the corrected IMU data.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 13%" />
+<col style="width: 37%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>int32_t</p></td>
+<td><p>Acceleration X-axis</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-6}\)</span> m/s2/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>int32_t</p></td>
+<td><p>Rotation rate in X-axis</p></td>
+<td><p>1/360000 deg/bit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x009">
+<h3>9.9 Message ID 0x009<a class="headerlink" href="#message-id-0x009" title="Permalink to this headline">¶</a></h3>
+<p>This message contains y-components of the corrected IMU data.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 13%" />
+<col style="width: 37%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>int32_t</p></td>
+<td><p>Acceleration Y-axis</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-6}\)</span> m/s2/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>int32_t</p></td>
+<td><p>Rotation rate in Y-axis</p></td>
+<td><p>1/360000 deg/bit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x00a">
+<h3>9.10 Message ID 0x00A<a class="headerlink" href="#message-id-0x00a" title="Permalink to this headline">¶</a></h3>
+<p>This message contains z-components of the corrected IMU data.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 13%" />
+<col style="width: 37%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>int32_t</p></td>
+<td><p>Acceleration Z-axis</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-6}\)</span> m/s2/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>int32_t</p></td>
+<td><p>Rotation rate in Z-axis</p></td>
+<td><p>1/360000 deg/bit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x101">
+<h3>9.11 Message ID 0x101<a class="headerlink" href="#message-id-0x101" title="Permalink to this headline">¶</a></h3>
+<p>This message contains the system time of the raw IMU data.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 25%" />
+<col style="width: 35%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>uint32_t</p></td>
+<td><p>seconds</p></td>
+<td><p>seconds</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>uint32_t</p></td>
+<td><p>Nano seconds</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h3>9.12 Message ID 0x101<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>This message contains x-axis components of the raw IMU data.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 13%" />
+<col style="width: 37%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>int32_t</p></td>
+<td><p>Acceleration X-axis</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-6}\)</span> m/s2/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>int32_t</p></td>
+<td><p>Rotation rate in X-axis</p></td>
+<td><p>1/360000 deg/bit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x0103">
+<h3>9.13 Message ID 0x0103<a class="headerlink" href="#message-id-0x0103" title="Permalink to this headline">¶</a></h3>
+<p>This message contains y-axis components of the raw IMU data.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 13%" />
+<col style="width: 37%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>int32_t</p></td>
+<td><p>Acceleration Y-axis</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-6}\)</span> m/s2/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>int32_t</p></td>
+<td><p>Rotation rate in Y-axis</p></td>
+<td><p>1/360000 deg/bit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="message-id-0x0104">
+<h3>9.14 Message ID 0x0104<a class="headerlink" href="#message-id-0x0104" title="Permalink to this headline">¶</a></h3>
+<p>This message contains z-axis components of the raw IMU data.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 13%" />
+<col style="width: 37%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Content</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>int32_t</p></td>
+<td><p>Acceleration Z-axis</p></td>
+<td><p><span class="math notranslate nohighlight">\(10^{-6}\)</span> m/s2/bit</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>int32_t</p></td>
+<td><p>Rotation rate in Z-axis</p></td>
+<td><p>1/360000 deg/bit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="tips-for-system-usage">
+<h2>10. Tips for System Usage<a class="headerlink" href="#tips-for-system-usage" title="Permalink to this headline">¶</a></h2>
+<p>If a laptop computer’s display is too close to a GNSS antenna, it can cause adverse effects on the navigation system due to jamming/interference.</p>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="_images/Laptop_computer_jamming_the_GNSS.png"><img alt="_images/Laptop_computer_jamming_the_GNSS.png" src="_images/Laptop_computer_jamming_the_GNSS.png" style="width: 546.6999999999999px; height: 409.5px;" /></a>
+<p class="caption"><span class="caption-text">Figure 5: Laptop computer jamming the GNSS</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, Aceinna Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
