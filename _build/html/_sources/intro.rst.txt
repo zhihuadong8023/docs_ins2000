@@ -4,7 +4,7 @@ Overview
 .. contents:: Contents
     :local:
 
-FRII-D-Plus-INS Receiver is a highly reliable, highly integrated Beidou high-precision positioning and 
+The Aceinna INS2000 Receiver is a highly reliable, highly integrated Beidou high-precision positioning and 
 directional inertial navigation combined receiver. Support BDS/GPS/GLONASS three-system RTK 
 high-precision positioning. Using independent intellectual property rights of fast carrier phase ambiguity 
 resolution technology and multipath suppression algorithms, it can quickly and accurately calculate 

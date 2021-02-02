@@ -9,7 +9,7 @@ Quick Start
 INS2000 Introduction
 ~~~~~~~~~~~~~~~~~~~~
 
-FRII-D-Plus-INS Receiver outline drawing
+Aceinna INS2000 Receiver outline drawing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. figure:: media/outline.png
@@ -184,7 +184,7 @@ Prerequisites
 +--------------------------+----------+----------------------------------------------+
 | Name                     | Quantity | Remarks                                      |
 +--------------------------+----------+----------------------------------------------+
-| FRII-D-Plus-INS receiver |    1     |                                              |
+| Aceinna INS2000 receiver |    1     |                                              |
 +--------------------------+----------+----------------------------------------------+
 | 4G antenna               |    1     |                                              |
 +--------------------------+----------+----------------------------------------------+
@@ -210,15 +210,16 @@ Prerequisites
 .. figure:: media/connection.png
     :align: center
 
-* 1: Install the FRII-D-Plus-INS on the carrier (the advancing direction of the carrier is consistent with the direction of the receiver Y axis);
-* 2: Install the FRII-D-Plus-INS receiver with a 4G antenna;
-* 3: Install the FRII-D-Plus-INS receiver into the SIM card;
+* 1: Install the Aceinna INS2000 on the carrier (the advancing direction of the carrier is consistent with the direction of the receiver Y axis);
+* 2: Install the Aceinna INS2000 receiver with a 4G antenna;
+* 3: Install the Aceinna INS2000 receiver into the SIM card;
 .. note:: When installing the SIM card, as shown in the figure, the notch is to the right and the chip is upward.
-* 4: Connect the FRII-D-Plus-INS receiver to the GNSS antenna through the GNSS feeder (note that the antenna should be installed in an open and unobstructed place);
+* 4: Connect theAceinna INS2000 receiver to the GNSS antenna through the GNSS feeder (note that the antenna should be installed in an open and unobstructed place);
 .. note:: When the dual antenna board is built-in, ANT1 is the master antenna and ANT2 is the slave antenna.
-* 5: Install the FRII-D-Plus-INS data cable to the FRII-D-Plus-INS;
+* 5: Install the Aceinna INS2000 data cable to the Aceinna INS2000;
 * 6: Connect the network port or serial port to the laptop;
-* 7: Power supply 9-36V (12V recommended) (note that all hardware is successfully connected before powering on);
+* 7: Power supply 9-36V (12V recommended);
+.. note:: Power on after all hardware is successfully connected.
 * 8: Perform integrated navigation configuration.
 
 Connection example
@@ -228,7 +229,7 @@ Serial connection
 ------------------
 
 Connect the computer with a serial cable and install the serial cable driver. After the driver is installed, the 
-successful serial port recognition will be displayed in the computer's device manager. as the picture shows:
+successful serial port recognition will be displayed in the computer's device manager. as the figure shows:
 
 .. figure:: media/serial_1.png
     :align: center
@@ -288,11 +289,11 @@ Network port connection
 
 * 3 The following five methods can quickly enter the built-in network interface of the board, and experience the full graphical, zero-handed interaction mode.
 
- * (1) Enter the IP address in the browser (Chrome is recommended)
- * (2) Click the device name directly in the Monitor network device list
- * (3) Click the upper right corner on the main Monitor interface
- * (4) Use the shortcut key CTRL+ U in the main interface of Monitor
- * (5) Click the board IP in the status bar at the bottom left corner of Monitor
+ * (1): Enter the IP address in the browser (Chrome is recommended)
+ * (2): Click the device name directly in the Monitor network device list
+ * (3): Click the upper right corner on the main Monitor interface
+ * (4): Use the shortcut key CTRL+ U in the main interface of Monitor
+ * (5): Click the board IP in the status bar at the bottom left corner of Monitor
 
 .. figure:: media/net_connection.png
     :align: center

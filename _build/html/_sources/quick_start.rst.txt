@@ -9,7 +9,7 @@ Quick Start
 INS2000 Introduction
 ~~~~~~~~~~~~~~~~~~~~
 
-FRII-D-Plus-INS Receiver outline drawing
+Aceinna INS2000 Receiver outline drawing
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. figure:: media/outline.png
@@ -288,11 +288,11 @@ Network port connection
 
 * 3 The following five methods can quickly enter the built-in network interface of the board, and experience the full graphical, zero-handed interaction mode.
 
- * (1) Enter the IP address in the browser (Chrome is recommended)
- * (2) Click the device name directly in the Monitor network device list
- * (3) Click the upper right corner on the main Monitor interface
- * (4) Use the shortcut key CTRL+ U in the main interface of Monitor
- * (5) Click the board IP in the status bar at the bottom left corner of Monitor
+ * (1): Enter the IP address in the browser (Chrome is recommended)
+ * (2): Click the device name directly in the Monitor network device list
+ * (3): Click the upper right corner on the main Monitor interface
+ * (4): Use the shortcut key CTRL+ U in the main interface of Monitor
+ * (5): Click the board IP in the status bar at the bottom left corner of Monitor
 
 .. figure:: media/net_connection.png
     :align: center
