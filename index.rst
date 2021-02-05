@@ -40,7 +40,7 @@ are also supported.
     :titlesonly:
 
     quick_start
-
+    useINS2000
 
 .. .. toctree::
     :caption: INS2000 Developer Manual

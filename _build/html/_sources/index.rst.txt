@@ -6,7 +6,7 @@ INS2000 Developer Manual
    :width: 4.0in
    :height: 3.0in
 
-FRII-D-Plus-INS Receiver is a robust high precision receiver which supports dual 
+Aceinna INS2000 Receiver is a robust high precision receiver which supports dual 
 frequency from the GPS,BDS,GLONASS and QZSS constellations. This delivers the quickest 
 and most reliable RTK initializations for centimeter level positioning and precise heading. 
 Mainly facing to applications of high-precision positioning, navigation and mapping, etc. 
@@ -40,7 +40,7 @@ are also supported.
     :titlesonly:
 
     quick_start
-
+    useINS2000
 
 .. .. toctree::
     :caption: INS2000 Developer Manual

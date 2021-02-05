@@ -222,89 +222,61 @@ Prerequisites
 .. note:: Power on after all hardware is successfully connected.
 * 8: Perform integrated navigation configuration.
 
-Connection example
-^^^^^^^^^^^^^^^^^^^^
-
-Serial connection
-------------------
-
-Connect the computer with a serial cable and install the serial cable driver. After the driver is installed, the 
-successful serial port recognition will be displayed in the computer's device manager. as the figure shows:
-
-.. figure:: media/serial_1.png
-    :align: center
-
-After identification, you can use the serial port tool for configuration management. It is recommended to use the 
-software developed by Aceinna that is specially used for the configuration of the board card receiver.
-
-Usage Steps
-------------
-
-Click the icon to enter the software.
-
-.. figure:: media/monitor.png
-    :align: center
-
-There are two ways to enter the serial port.
-
-* 1 Click the port connection (red box 1 in the figure above) to realize batch connection of multiple serial ports.
-
-When the serial port baud rate is known, select the corresponding serial port baud rate, and when the baud rate is 
-unknown, select automatic detection. **The factory default serial port baud rate is 115200**.
-
-.. figure:: media/port_connection.png
-    :align: center
-
-If the serial port is opened by other serial devices, the serial port will be grayed out and the "Occupied" column 
-will prompt "Yes".
-
-* 2 Click Quick Connect (green box 2 in the figure above)
-
-.. figure:: media/quick_connection.png
-    :align: center
-
-When the serial port baud rate is known, select the corresponding serial port baud rate, and when the baud rate is 
-unknown, select automatic detection.
-
-Enter the software interface as follows:
-
-.. figure:: media/interface.png
-    :align: center
-
-Automatically display the board status in the lower right corner after connection.
-
-
-.. figure:: media/board_status.png
-    :align: center
-
-Contains board IP information, board model, firmware version, currently connected COM port, and baud rate.
-
-
 Network port connection
-------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-* 1 Connect the computer with a network cable or ensure that the receiver and the computer are in the same local area network (connect to the same router). After the physical connection is normal, the receiver will automatically try to obtain an available IP. Customers can also input commands through the serial port to configure a fixed IP.
+1. Serial connection. Connect the computer with a serial cable and install the serial cable driver. After the driver is installed, the 
+successful serial port recognition will be displayed in the computer's device manager. As the figure shows:
 
-* 2 Use Monitor to detect the network device function, or use Monitor serial port IP detection function to obtain the board IP (third-party serial tools can view the IP by entering the NETCONFIG command in the serial port).
+ .. figure:: media/serial_1.png
+     :align: center
 
-* 3 The following five methods can quickly enter the built-in network interface of the board, and experience the full graphical, zero-handed interaction mode.
+2. Internet connection. Connect the computer with a network cable or ensure that the receiver and the computer are in the same local 
+area network (connect to the same router). After the physical connection is normal, the receiver will automatically 
+try to obtain an available IP.
 
- * (1): Enter the IP address in the browser (Chrome is recommended)
- * (2): Click the device name directly in the Monitor network device list
- * (3): Click the upper right corner on the main Monitor interface
- * (4): Use the shortcut key CTRL+ U in the main interface of Monitor
- * (5): Click the board IP in the status bar at the bottom left corner of Monitor
+3. Obtain IP information. Using the serial port tool, select the corresponding serial port, and select **460800** for the serial port baud rate. 
+Send the **netconfig** command line in the command window to get the board IP information.
 
-.. figure:: media/net_connection.png
-    :align: center
+ .. figure:: media/ip_info.png
+     :align: center
 
-.. note:: The webpage will automatically switch to the local language according to the current computer system language,
- and now supports English and Chinese. Other languages can be customized, please contact Aceinna sales team if you need.
+ If you need to set a static IP, you can set it through NETCONFIG. The detailed steps are as follows (assuming the receiver IP address 
+ is 192.168.20.173):
+  * Enter the following commands to set the receiver IP address, subnet mask and gateway:
+
+    *NETCONFIG STATIC 192.168.20.173 255.255.0.0 192.168.1.1*
+
+  * Save the current configuration:
+
+    *SAVECONFIG*
+
+4. Enter the IP address in the browser (Chrome is recommended), quickly enter the built-in network interface of the board, and 
+experience the full graphical, zero-handed interaction mode.
 
 .. figure:: media/web_page.png
     :align: center
 
-Enter the username and password by default: 
-**username: admin    password: password**
+.. note:: The webpage will automatically switch to the local language according to the current computer system language,
+ and now supports English, Chinese, Japanese and Norwegian. Other languages can be customized, please contact Aceinna sales team if you need.
 
-.. note:: The password can be modified after entering the webpage. If you forget the password, please contact Aceinna technical team.
+Enter the username and password by default:
+
+**username: admin**
+
+**password: password**
+
+*The password can be modified after entering the webpage. If you forget the password, please contact Aceinna technical team.*
+
+INS2000 Vehicle Installation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We give a schematic diagram for the scene where the product is installed on the car.
+
+Connect the GNSS antenna, the direction of the Y coordinate axis in the Aceinna INS2000 coordinate system 
+is the same as the forward direction of the car body.
+
+.. figure:: media/vehicle_installation.png
+    :align: center
+
+**ANT1 is the main antenna placed at the rear of the car, ANT2 is the slave antenna placed at the front of the car.**
