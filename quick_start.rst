@@ -245,11 +245,11 @@ Send the **netconfig** command line in the command window to get the board IP in
  is 192.168.20.173):
   * Enter the following commands to set the receiver IP address, subnet mask and gateway:
 
-    *NETCONFIG STATIC 192.168.20.173 255.255.0.0 192.168.1.1*
+    **NETCONFIG STATIC 192.168.20.173 255.255.0.0 192.168.1.1**
 
   * Save the current configuration:
 
-    *SAVECONFIG*
+    **SAVECONFIG**
 
 4. Enter the IP address in the browser (Chrome is recommended), quickly enter the built-in network interface of the board, and 
 experience the full graphical, zero-handed interaction mode.
