@@ -28,7 +28,7 @@ data for inertial navigation: command configuration and web visual configuration
 The following two subsections cover the detailed steps of using the two types of configuration.
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 3
     :hidden:
 
     useINS2000/web_config
