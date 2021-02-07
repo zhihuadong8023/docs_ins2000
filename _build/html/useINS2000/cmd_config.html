@@ -1,0 +1,249 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Command line configuration &mdash; Aceinna INS1000 Developer Manual  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Web configuration" href="web_config.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Aceinna INS1000 Developer Manual
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">About INS2000</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Overview</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quick_start.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../useINS2000.html">How to use INS2000?</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="web_config.html">Web configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Command line configuration</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Aceinna INS1000 Developer Manual</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../useINS2000.html">How to use INS2000?</a> &raquo;</li>
+        
+      <li>Command line configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/useINS2000/cmd_config.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="command-line-configuration">
+<h1>Command line configuration<a class="headerlink" href="#command-line-configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="integrated-navigation-configuration">
+<h2>Integrated Navigation Configuration<a class="headerlink" href="#integrated-navigation-configuration" title="Permalink to this headline">¶</a></h2>
+<p>1: Install hardware devices. Please refer to ` Quick Start`_.</p>
+<blockquote>
+<div><div class="figure align-center">
+<img alt="../_images/vehicle_installation1.png" src="../_images/vehicle_installation1.png" />
+</div>
+</div></blockquote>
+<p>2: Enter the serial port configuration command.</p>
+<p><strong>INSCOMMAND ENABLE</strong>  //<em>Turn on inertial navigation mode</em></p>
+<p><strong>SETINSROTATION RBV 0 0 0</strong> //<em>Set the mounting angle (At this time, the INS2000 receiver antenna port is configured
+when the forward direction of the car body is the same. If there are other installation methods, please contact Aceinna
+technical staff)</em></p>
+<p><strong>NTRIPCONFIG DTU1 client v1 ServerIP:PortNum Mountpoint username password</strong> //<em>Turn on 4G</em></p>
+<p><strong>SETINSTRANSLATION ANT1 0 0 0 0.0 0.0 0.0</strong> //<em>Refer to 5.2 Setting the lever arm</em></p>
+<p><strong>SETINSTRANSLATION DUALANT 0 1 0</strong> //<em>Only dual-antenna receiver configuration, refer to 5.2 Setting the lever arm</em></p>
+<p><strong>LOG COM2 BESTPOSA ONTIME 1</strong> //<em>Output from serial port 2</em></p>
+<p><strong>SAVECONFIG</strong> //<em>Save configuration</em></p>
+<p>An example of the relevant configuration of the lever arm from the IMU to the main antenna.</p>
+<img alt="../_images/lever_arm.png" class="align-center" src="../_images/lever_arm.png" />
+<p>It can be seen from the figure that the main antenna is 0.3 meters to the left of the board (X-axis -0.3m), 1 meter to the
+rear (Y-axis -1.0m), and 0.3 meters above (Z-axis +0.3m), the configuration is:</p>
+<p><strong>SETINSTRANSLATION ANT1 -0.3 -1.0 0.3</strong></p>
+<p>The slave antenna is 1m directly in front of the main antenna, the configuration is:</p>
+<p><strong>SETINSTRANSLATION DUALANT 0 1 0</strong></p>
+<p>3: Configuration command example (<em>you can copy and paste directly, pay attention to change ntrip account information,
+antenna lever arm information</em>).</p>
+<p>Aceinna INS2000  Dual antenna configuration</p>
+<p><code class="docutils literal notranslate"><span class="pre">SETINSROTATION</span> <span class="pre">RBV</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">-90</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">NTRIPCONFIG</span> <span class="pre">DTU1</span> <span class="pre">CLIENT</span> <span class="pre">V1</span> <span class="pre">*60.205.8.49:8002</span> <span class="pre">RTCM32_GGB</span> <span class="pre">admin</span> <span class="pre">password*</span></code>
+<strong>SETINSTRANSLATION ANT1 *0 0 0*</strong>
+<strong>SETINSTRANSLATION DUALANT *0 1.0 0*</strong>
+<strong>LOG COM2 HEADINGA ONTIME 1</strong>
+<strong>LOG COM2 BESTPOSA ONTIME 1</strong>
+<strong>LOG COM2 INSPVAXA ONTIME 1</strong>
+<strong>SAVEOCNIFG</strong></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="web_config.html" class="btn btn-neutral float-left" title="Web configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Aceinna Inc
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
