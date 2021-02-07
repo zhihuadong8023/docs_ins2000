@@ -162,7 +162,7 @@
 <h1>Command line configuration<a class="headerlink" href="#command-line-configuration" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="integrated-navigation-configuration">
 <h2>Integrated Navigation Configuration<a class="headerlink" href="#integrated-navigation-configuration" title="Permalink to this headline">¶</a></h2>
-<p>1: Install hardware devices. Please refer to ` Quick Start`_.</p>
+<p>1: Install hardware devices.</p>
 <blockquote>
 <div><div class="figure align-center">
 <img alt="../_images/vehicle_installation1.png" src="../_images/vehicle_installation1.png" />
@@ -174,8 +174,8 @@
 when the forward direction of the car body is the same. If there are other installation methods, please contact Aceinna
 technical staff)</em></p>
 <p><strong>NTRIPCONFIG DTU1 client v1 ServerIP:PortNum Mountpoint username password</strong> //<em>Turn on 4G</em></p>
-<p><strong>SETINSTRANSLATION ANT1 0 0 0 0.0 0.0 0.0</strong> //<em>Refer to 5.2 Setting the lever arm</em></p>
-<p><strong>SETINSTRANSLATION DUALANT 0 1 0</strong> //<em>Only dual-antenna receiver configuration, refer to 5.2 Setting the lever arm</em></p>
+<p><strong>SETINSTRANSLATION ANT1 0 0 0 0.0 0.0 0.0</strong> //<em>Set the lever arm</em></p>
+<p><strong>SETINSTRANSLATION DUALANT 0 1 0</strong> //<em>Only dual-antenna receiver configuration. Set the lever arm</em></p>
 <p><strong>LOG COM2 BESTPOSA ONTIME 1</strong> //<em>Output from serial port 2</em></p>
 <p><strong>SAVECONFIG</strong> //<em>Save configuration</em></p>
 <p>An example of the relevant configuration of the lever arm from the IMU to the main antenna.</p>
@@ -188,14 +188,86 @@ rear (Y-axis -1.0m), and 0.3 meters above (Z-axis +0.3m), the configuration is:<
 <p>3: Configuration command example (<em>you can copy and paste directly, pay attention to change ntrip account information,
 antenna lever arm information</em>).</p>
 <p>Aceinna INS2000  Dual antenna configuration</p>
-<p><code class="docutils literal notranslate"><span class="pre">SETINSROTATION</span> <span class="pre">RBV</span> <span class="pre">0</span> <span class="pre">0</span> <span class="pre">-90</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">NTRIPCONFIG</span> <span class="pre">DTU1</span> <span class="pre">CLIENT</span> <span class="pre">V1</span> <span class="pre">*60.205.8.49:8002</span> <span class="pre">RTCM32_GGB</span> <span class="pre">admin</span> <span class="pre">password*</span></code>
-<strong>SETINSTRANSLATION ANT1 *0 0 0*</strong>
-<strong>SETINSTRANSLATION DUALANT *0 1.0 0*</strong>
-<strong>LOG COM2 HEADINGA ONTIME 1</strong>
-<strong>LOG COM2 BESTPOSA ONTIME 1</strong>
-<strong>LOG COM2 INSPVAXA ONTIME 1</strong>
-<strong>SAVEOCNIFG</strong></p>
+<p><strong>SETINSROTATION RBV 0 0 -90</strong></p>
+<p><strong>NTRIPCONFIG DTU1 CLIENT V1 60.205.8.49:8002 RTCM32_GGB admin password</strong> //<em>60.205.8.49:8002 RTCM32_GGB admin password</em> needs to be modified</p>
+<p><strong>SETINSTRANSLATION ANT1 0 0 0</strong> //<em>0 0 0</em> needs to be modified</p>
+<p><strong>SETINSTRANSLATION DUALANT 0 1.0 0</strong> //<em>0 1.0 0</em> needs to be modified</p>
+<p><strong>LOG COM2 HEADINGA ONTIME 1</strong></p>
+<p><strong>LOG COM2 BESTPOSA ONTIME 1</strong></p>
+<p><strong>LOG COM2 INSPVAXA ONTIME 1</strong></p>
+<p><strong>SAVEOCNIFG</strong></p>
+</div>
+<div class="section" id="rtk-configuration">
+<h2>RTK Configuration<a class="headerlink" href="#rtk-configuration" title="Permalink to this headline">¶</a></h2>
+<p>When the INS2000 is configured as a rover station, it can receive RTCM data through multiple ports such as Ethernet, serial port,
+USB, etc., and can input multiple sets of RTCM data at the same time, and the receiver is connected to the built-in distribution.</p>
+<p>At the same time, customers can configure the message information to obtain the best positioning information:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>BESTPOS best location</p></li>
+<li><p>BESTVEL best available speed</p></li>
+<li><p>BESTXYZ best position and speed</p></li>
+<li><p>GPGGA GNSS positioning data output sentence</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="ntrip-rover-station-configuration">
+<h2>Ntrip Rover Station Configuration<a class="headerlink" href="#ntrip-rover-station-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Let’s now configure the commonly used CORS station technology, taking Aceinna’s Ntrip as an example.</p>
+<p>This RTK mobile station configuration requires that the INS2000 receiver can be connected to the Internet.</p>
+<p>There are two ways for this product to connect to the Internet:</p>
+<p>1 Connect the product to a network device such as a mobile router with a network cable.</p>
+<p>The configuration command is as follows:</p>
+<p><strong>NTRIPCONFIG NCOM1 client V1 60.205.8.49:8002 RTCM32_GGB user password</strong></p>
+<p>2 Connect the 4G antenna and insert the 4G card to configure as follows.</p>
+<p>The configuration command is as follows:</p>
+<p><strong>NTRIPCONFIG DTU1 client V1 60.205.8.49:8002 RTCM32_GGB user password</strong></p>
+</div>
+<div class="section" id="simple-output-configuration">
+<h2>Simple Output Configuration<a class="headerlink" href="#simple-output-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The Y-axis direction of the FRII-D-Plus-INS receiver coordinate system is the same as the forward direction of the carrier.
+Then configure the combined navigation command can be divided into 3 aspects are</p>
+<ol class="loweralpha simple">
+<li><p>Set the board mounting angle and lever arm. They are:</p></li>
+</ol>
+<ul class="simple">
+<li><p>SETINSROTATION set inertial navigation mounting angle</p></li>
+<li><p>SETINSTRANSLATION Set the inertial guidance lever arm</p></li>
+</ul>
+<ol class="loweralpha simple" start="2">
+<li><p>Enable INS integrated navigation engine (enabled by default)</p></li>
+</ol>
+<ul class="simple">
+<li><p>INSCOMMAND</p></li>
+</ul>
+<ol class="loweralpha" start="3">
+<li><p>Set the type and port of positioning result output</p>
+<p>Support integrated navigation information:</p>
+</li>
+</ol>
+<ul class="simple">
+<li><p>INSATT inertial navigation attitude</p></li>
+<li><p>INSPOS inertial navigation position</p></li>
+<li><p>INSPVA inertial navigation position speed and attitude</p></li>
+<li><p>INSPVAX extended inertial navigation position speed and attitude</p></li>
+<li><p>INSSPD inertial navigation horizontal and vertical speed</p></li>
+<li><p>INSVEL inertial navigation northeast sky speed</p></li>
+</ul>
+<p>Also reflected in the following information</p>
+<ul class="simple">
+<li><p>BESTPOS best location</p></li>
+<li><p>BESTVEL best available speed</p></li>
+<li><p>BESTXYZ best position and speed</p></li>
+<li><p>GPGGA GNSS positioning data output sentence</p></li>
+<li><p>KSXT positioning and orientation data</p></li>
+</ul>
+<p>Examples of inertial navigation configuration are as follows:</p>
+<p><strong>SETINSROTATION RBV 0 0 90 0.0 0.0 0.0</strong></p>
+<p><strong>SETINSTRANSLATION ANT1 0.1 -0.3 1.5 0.1 0.1 0.1</strong></p>
+<p><strong>INSCOMMAND ENABLE</strong></p>
+<p><strong>LOG COM1 GPGGA ONTIME 1</strong></p>
+<p><strong>LOG COM1 INSPVAA ONTIME 1</strong></p>
+<p><strong>SAVECONFIG</strong></p>
 </div>
 </div>
 
