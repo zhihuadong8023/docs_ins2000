@@ -136,7 +136,7 @@ Back panel
 +-----------+-------------------+-------------------------------------------------------------------+
 | Interface | State             | Description                                                       |
 +-----------+-------------------+-------------------------------------------------------------------+
-| ANT1      | Main antenna      | Main antenna when built-in dual antenna board.                    |
+| ANT1      | Master antenna    | Master antenna when built-in dual antenna board.                  |
 +-----------+-------------------+-------------------------------------------------------------------+
 | ANT2      | From the antenna  | When the dual antenna board is built-in, it is the slave antenna. |
 +-----------+-------------------+-------------------------------------------------------------------+
@@ -279,4 +279,4 @@ is the same as the forward direction of the car body.
 .. figure:: media/vehicle_installation.png
     :align: center
 
-**ANT1 is the main antenna placed at the rear of the car, ANT2 is the slave antenna placed at the front of the car.**
+**ANT1 is the master antenna placed at the rear of the car, ANT2 is the slave antenna placed at the front of the car.**
