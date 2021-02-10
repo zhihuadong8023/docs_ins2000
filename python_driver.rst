@@ -1,4 +1,4 @@
-python-openimu
+Python Driver
 ==============
 
 Python driver for OpenIMU, OpenRTK and INS2000

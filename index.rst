@@ -31,16 +31,16 @@ are also supported.
 
 .. raw:: latex
 
-   \part{Setup and Usage}
+   \part{Quick Start}
 
 .. toctree::
-    :caption: Setup and Usage
+    :caption: Quick Start
     :maxdepth: 3
     :hidden:
     :titlesonly:
 
     quick_start
-    useINS2000
+    configuration
     vehicle_installation
     python_driver
     RTKlib_tools

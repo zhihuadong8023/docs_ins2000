@@ -1,9 +1,9 @@
-How to use INS2000?
-===================
+Configuration
+==============
 
-Note the usage of INS2000 is described with the INS2000 EVK. There are two types of configuration methods 
-provided to interact with both the module and a NTRIP server over the internet providing INS correction 
-data for inertial navigation: command configuration and web visual configuration
+There are two types of configuration methods provided to interact with both the module 
+and a NTRIP server over the internet providing INS correction data for inertial navigation: 
+command configuration and web visual configuration.
 
 * Web configuration: Connect to the network for web configuration.
 
