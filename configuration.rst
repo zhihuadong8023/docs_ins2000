@@ -28,7 +28,7 @@ command configuration and web visual configuration.
 The following two subsections cover the detailed steps of using the two types of configuration.
 
 .. toctree::
-    :maxdepth: 3
+    :maxdepth: 2
     :hidden:
 
     configuration/web_config
