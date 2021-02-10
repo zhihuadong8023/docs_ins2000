@@ -42,8 +42,7 @@ are also supported.
     quick_start
     configuration
     vehicle_installation
-    python_driver
-    RTKlib_tools
+    data_logging
 
 .. .. toctree::
     :caption: INS2000 Developer Manual
