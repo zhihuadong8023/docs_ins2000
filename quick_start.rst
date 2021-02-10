@@ -1,9 +1,3 @@
-Quick Start
-===========
-
-.. contents:: Contents
-    :local:
-
 **Note: if the figures are blur, click on the figure to see the clearer version**
 
 INS2000 Introduction
@@ -136,7 +130,7 @@ Back panel
 +-----------+-------------------+-------------------------------------------------------------------+
 | Interface | State             | Description                                                       |
 +-----------+-------------------+-------------------------------------------------------------------+
-| ANT1      | Main antenna      | Main antenna when built-in dual antenna board.                    |
+| ANT1      | Master antenna    | Master antenna when built-in dual antenna board.                  |
 +-----------+-------------------+-------------------------------------------------------------------+
 | ANT2      | From the antenna  | When the dual antenna board is built-in, it is the slave antenna. |
 +-----------+-------------------+-------------------------------------------------------------------+
@@ -173,11 +167,9 @@ Indicator Satus
 |.. figure:: media/pwr_ind.png | Power Indicator     || Always on, power on                                                                      |
 +------------------------------+---------------------+-------------------------------------------------------------------------------------------+
 
-Quick Setup and Usage
-~~~~~~~~~~~~~~~~~~~~~~~
 
 Prerequisites
-^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
 **Equipment list**
 
@@ -223,7 +215,7 @@ Prerequisites
 * 8: Perform integrated navigation configuration.
 
 Network port connection
-^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Serial connection. Connect the computer with a serial cable and install the serial cable driver. After the driver is installed, the 
 successful serial port recognition will be displayed in the computer's device manager. As the figure shows:
@@ -268,15 +260,3 @@ Enter the username and password by default:
 
 *The password can be modified after entering the webpage. If you forget the password, please contact Aceinna technical team.*
 
-INS2000 Vehicle Installation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-We give a schematic diagram for the scene where the product is installed on the car.
-
-Connect the GNSS antenna, the direction of the Y coordinate axis in the Aceinna INS2000 coordinate system 
-is the same as the forward direction of the car body.
-
-.. figure:: media/vehicle_installation.png
-    :align: center
-
-**ANT1 is the main antenna placed at the rear of the car, ANT2 is the slave antenna placed at the front of the car.**

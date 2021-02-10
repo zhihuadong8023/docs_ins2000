@@ -31,16 +31,19 @@ are also supported.
 
 .. raw:: latex
 
-   \part{Tutorial}
+   \part{Setup and Usage}
 
 .. toctree::
-    :caption: Tutorial
-    :maxdepth: 4
+    :caption: Setup and Usage
+    :maxdepth: 3
     :hidden:
     :titlesonly:
 
     quick_start
     useINS2000
+    vehicle_installation
+    python_driver
+    RTKlib_tools
 
 .. .. toctree::
     :caption: INS2000 Developer Manual

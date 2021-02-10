@@ -38,18 +38,18 @@ The following figure is an example to introduce the related configuration of the
 .. image:: ../media/lever_arm.png
    :align: center
 
-As can be seen from the above figure, the main antenna is 0.3 meters above the board, 1 meter behind, and 0.3 meters 
+As can be seen from the above figure, the master antenna is 0.3 meters above the board, 1 meter behind, and 0.3 meters 
 on the left.
 
-For boards that support dual antennas, it is also necessary to configure the main-slave antenna offset vector. 
-That is, the vector from the main antenna to the slave antenna in the coordinate system represented by the currently 
-placed IMU. It can be seen from the above figure that the slave antenna is 1 meter in front of the main antenna 
+For boards that support dual antennas, it is also necessary to configure the master-slave antenna offset vector. 
+That is, the vector from the master antenna to the slave antenna in the coordinate system represented by the currently 
+placed IMU. It can be seen from the above figure that the slave antenna is 1 meter in front of the master antenna 
 (the positive direction of the Y-axis of the IMU), and there is no offset along the X/Z-axis of the IMU.
 
 .. image:: ../media/web_lever.png
    :align: center
 
-*The rotation vector of the main-slave antenna and the vehicle body or IMU will be automatically calculated 
+*The rotation vector of the master-slave antenna and the vehicle body or IMU will be automatically calculated 
 according to the lever arm parameters configured here.*
 
 RTK Configuration

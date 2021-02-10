@@ -19,8 +19,8 @@ sys.path.insert(0, os.path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
 
-project = u'Aceinna INS1000 Developer Manual'
-copyright = u'2018, Aceinna Inc'
+project = u'Aceinna INS2000 Developer Manual'
+copyright = u'2021, Aceinna Inc'
 author = u'Aceinna Engineering'
 
 # The short X.Y version
@@ -115,7 +115,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'INS1000'
+htmlhelp_basename = 'INS2000'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -142,7 +142,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'INS1000.tex', u'INS1000 Documentation',
+    (master_doc, 'INS2000.tex', u'INS2000 Documentation',
      u'Aceinna Engineering', 'manual'),
 ]
 
@@ -152,7 +152,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'INS1000', u'INS1000 Documentation',
+    (master_doc, 'INS2000', u'INS2000 Documentation',
      [author], 1)
 ]
 
@@ -163,7 +163,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'INS1000', u'INS1000 Documentation',
-     author, 'INS1000', 'One line description of project.',
+    (master_doc, 'INS2000', u'INS2000 Documentation',
+     author, 'INS2000', 'One line description of project.',
      'Miscellaneous'),
 ]
