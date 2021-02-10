@@ -31,5 +31,5 @@ The following two subsections cover the detailed steps of using the two types of
     :maxdepth: 3
     :hidden:
 
-    useINS2000/web_config
-    useINS2000/cmd_config
+    configuration/web_config
+    configuration/cmd_config
