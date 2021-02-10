@@ -1,5 +1,5 @@
-Description of INS2000 data collected by rtknavi
-------------------------------------------------
+RTKlib tool RTKNAVI
+-------------------
 
 rtknavi.exe download: https://github.com/Aceinna/rtklib_aceinna/releases
 

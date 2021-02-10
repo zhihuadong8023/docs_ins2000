@@ -1,5 +1,5 @@
-Description of ins2000 data collected by strsvr
-------------------------------------------------
+RTKlib tool STRSVR
+------------------
 
 strsvr.exe download: https://github.com/Aceinna/rtklib_aceinna/releases
 
