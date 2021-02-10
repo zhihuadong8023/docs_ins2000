@@ -1,7 +1,8 @@
-RTKLIB Tools to collect INS2000 data 
-====================================
+RTKLIB Tools 
+=============
 
 Two RTKLIB tools are provided for data download and decoding.
+
 .. toctree::
     :maxdepth: 2
     :hidden:
