@@ -123,7 +123,6 @@ Commnad List:
 | set         | Write parameters to device                                |
 +-------------+-----------------------------------------------------------+
 
-
 Data Decoding
 -------------
 

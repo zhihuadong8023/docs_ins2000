@@ -50,53 +50,6 @@ Interface
 |   | SAT                  | Satellite indicator                       | Refer to the table below |
 +---+----------------------+-------------------------------------------+--------------------------+
 
-where
-
-  * 1: GNSS antenna: TNC
-  * 2: 4G antenna: SMA
-  * 3: Card slot
-
-   - SD Card
-   - SIM Card
-
-  .. figure:: media/pin4.png 
-    :align: center
-    :width: 1.0in
-    :height: 1.0in
-
-  * 4: Pin definition
-
-    - CAN_L/422_TX-
-    - CAN_H/422_TX+
-    - GND
-    - USB_VBUS
-    - USB_ID
-    - GND
-    - USB_D+
-    - USB_D-
-    - TXD3/422_RX-
-    - RXD3/422_RX+
-
-  .. figure:: media/pin5.png  
-    :align: center
-    :width: 1.0in
-    :height: 1.0in
-
-  * 5: Pin definition
-
-    - GND
-    - N/A
-    - GND
-    - ETH_TX+
-    - ETH_TX-
-    - GND
-    - ETH_RX-
-    - ETH_RX+
-    - PPS
-    - 12V+
-    - RXD2
-    - TXD2
-
 10-pin MGG connector pin function
 ---------------------------------
 
@@ -155,7 +108,7 @@ where
 |   12   | TXD2     | COM2 send data                          |
 +--------+----------+-----------------------------------------+
 
- Antenna and Communication
+Antenna and Communication
 --------------------------
 
 +-----------+-------------------+-------------------------------------------------------------------+
@@ -173,7 +126,7 @@ where
 +-----------+-------------------+-------------------------------------------------------------------+
 
 Indicator Satus
-^^^^^^^^^^^^^^^
+---------------
 
 +------------------------------+---------------------+-------------------------------------------------------------------------------------------+ 
 | Indicator                    | Status              | Description                                                                               |
