@@ -64,6 +64,8 @@ for the second time or more, you can select the gear in the upper right corner t
 Set up base station
 -------------------
 
+INS2000 can be used as base station. The configuration procedure is as follows.
+
 The first step is to configure the base station location.
 
 .. image:: ../media/base_step1.png
@@ -74,39 +76,13 @@ The second step is to configure the output protocol and port.
 .. image:: ../media/base_step2_port.png
    :align: center
 
-COM port configuration.
-
-.. image:: ../media/base_step2_com.png
-   :align: center
-
-ICOM port configuration.
-
-.. image:: ../media/base_step2_icom.png
-   :align: center
-
 Set up rover station
 --------------------
 
-The serial port transmits RTCM data, and the rover station does not need to be configured.
-The RTCM input will be displayed on the web page to verify the RTCM differential data input (**the baud rate can be changed 
-as needed**).
+Let’s now configure INS2000 as rover with the commonly used CORS station technology, taking Aceinna’s Ntrip as 
+an example.
 
-.. image:: ../media/rover_step.png
-   :align: center
-
-ICOM rover station configuration.
-
-.. image:: ../media/rover_step_icom.png
-   :align: center
-
-.. note:: To enter the port number of the IP of the base station. Base station IP and mobile station IP are in the same network segment.
-
-Ntrip Rover Station Configuration
-=================================
-
-Let's now configure the commonly used CORS station technology, taking Aceinna's Ntrip as an example.
-
-This RTK mobile station configuration requires that the INS2000 receiver can be connected to the Internet.
+This RTK rover station configuration requires that the INS2000 receiver can be connected to the Internet.
 
 There are two ways for this product to connect to the Internet:
 
@@ -129,8 +105,8 @@ There are two ways for this product to connect to the Internet:
   .. image:: ../media/DTU_page.png
      :align: center
 
-Simple Output Configuration
-===========================
+Data Output Configuration
+=========================
 
 Enter the IO configuration interface from the web page to select different ports for output configuration.
 

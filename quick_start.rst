@@ -1,15 +1,54 @@
 **Note: if the figures are blur, click on the figure to see the clearer version**
 
-INS2000 Introduction
+Hardware Description
 ~~~~~~~~~~~~~~~~~~~~
 
-Aceinna INS2000 Receiver outline drawing
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Physical Specification
+^^^^^^^^^^^^^^^^^^^^^^^
 
-.. figure:: media/outline.png
++------------------+--------------------+-------------+-----------------------------+
+| Dimension        | 174×134×56mm       | Temperature | Operating: -40°~85°         |
++------------------+--------------------+             +-----------------------------+
+| Weight           | 950g               |             | Storage: -55°~95°           |
++------------------+--------------------+-------------+-----------------------------+
+| Protection Class | IP67               | Vibration   | GKB150.18-2009, MIL-STD-810 |
++------------------+--------------------+-------------+-----------------------------+
+| Humidity         | 95% non-condensing | Shock       | GKB150.18-2009, MIL-STD-810 |
++------------------+--------------------+-------------+-----------------------------+
+
+Interface
+^^^^^^^^^
+
+.. figure:: media/outline1.png
     :align: center
-    :width: 4.2in
-    :height: 3.0in
+
++--------------------------+-------------------------------------------+--------------------------+
+| Interface                | Description                               | Pin function             |
++--------------------------+-------------------------------------------+--------------------------+
+| Front Panel                                                                                     |
++---+----------------------+-------------------------------------------+--------------------------+
+| 4 | 10-pin MGG connector | USB, CAN, COM3                            | Refer to the table below |
++---+----------------------+-------------------------------------------+--------------------------+
+| 5 | 12-pin MGG connector | Ethernet port, PPS, COM2, power interface | Refer to the table below |
++---+----------------------+-------------------------------------------+--------------------------+
+| Rear Panel                                                                                      |
++---+----------------------+-------------------------------------------+--------------------------+
+| 1 | NC connectors        | GNSS Dual Antenna                         |                          |
++---+----------------------+-------------------------------------------+--------------------------+
+| 2 | SMA connector        | 4G Antenna                                |                          |
++---+----------------------+-------------------------------------------+--------------------------+
+| 3 | Card slots           | SD Card, SIM Card                         |                          |
++---+----------------------+-------------------------------------------+--------------------------+
+| Status Indicators                                                                               |
++---+----------------------+-------------------------------------------+--------------------------+
+|   | PWR                  | Power Indicator                           | Refer to the table below |
++---+----------------------+-------------------------------------------+--------------------------+
+|   | 4G                   | 4G signal light                           | Refer to the table below |
++---+----------------------+-------------------------------------------+--------------------------+
+|   | RTK                  | RTK indicator                             | Refer to the table below |
++---+----------------------+-------------------------------------------+--------------------------+
+|   | SAT                  | Satellite indicator                       | Refer to the table below |
++---+----------------------+-------------------------------------------+--------------------------+
 
 where
 
@@ -58,17 +97,8 @@ where
     - RXD2
     - TXD2
 
-Front panel
------------
-+---------------------+-------------------------------------------+--------------------------+
-| Interface           | Description                               | Pin function             |
-+---------------------+-------------------------------------------+--------------------------+
-|10-pin MGG connector | USB, CAN, COM3                            | Refer to the table below |
-+---------------------+-------------------------------------------+--------------------------+
-|12-pin MGG connector | Ethernet port, PPS, COM2, power interface | Refer to the table below |
-+---------------------+-------------------------------------------+--------------------------+
-
-**10-pin MGG connector pin function**
+10-pin MGG connector pin function
+---------------------------------
 
 +--------+---------------+---------------------------------------+
 | Number | Name          | Function                              |
@@ -94,7 +124,8 @@ Front panel
 |   10   | RXD3/422_RX+  | Receive data/422 receive positive     |
 +--------+---------------+---------------------------------------+
 
-**12-pin MGG connector pin function**
+12-pin MGG connector pin function
+---------------------------------
 
 +--------+----------+-----------------------------------------+
 | Number | Name     | Funtion                                 |
@@ -124,8 +155,8 @@ Front panel
 |   12   | TXD2     | COM2 send data                          |
 +--------+----------+-----------------------------------------+
 
-Back panel
-----------
+ Antenna and Communication
+--------------------------
 
 +-----------+-------------------+-------------------------------------------------------------------+
 | Interface | State             | Description                                                       |
@@ -167,11 +198,14 @@ Indicator Satus
 |.. figure:: media/pwr_ind.png | Power Indicator     || Always on, power on                                                                      |
 +------------------------------+---------------------+-------------------------------------------------------------------------------------------+
 
+Hardware Setup
+~~~~~~~~~~~~~~
+
+.. figure:: media/connection.png
+    :align: center
 
 Prerequisites
-~~~~~~~~~~~~~
-
-**Equipment list**
+^^^^^^^^^^^^^
 
 +--------------------------+----------+----------------------------------------------+
 | Name                     | Quantity | Remarks                                      |
@@ -197,10 +231,8 @@ Prerequisites
 | computer                 |    1     | prepared by customer                         |
 +--------------------------+----------+----------------------------------------------+
 
-**Hardware connection**
-
-.. figure:: media/connection.png
-    :align: center
+Setup Procedure
+^^^^^^^^^^^^^^^
 
 * 1: Install the Aceinna INS2000 on the carrier (the advancing direction of the carrier is consistent with the direction of the receiver Y axis);
 * 2: Install the Aceinna INS2000 receiver with a 4G antenna;
@@ -214,8 +246,8 @@ Prerequisites
 .. note:: Power on after all hardware is successfully connected.
 * 8: Perform integrated navigation configuration.
 
-Network port connection
-~~~~~~~~~~~~~~~~~~~~~~~
+PC Requirement and Network Port Connection
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Serial connection. Connect the computer with a serial cable and install the serial cable driver. After the driver is installed, the 
 successful serial port recognition will be displayed in the computer's device manager. As the figure shows:
@@ -259,4 +291,23 @@ Enter the username and password by default:
 **password: password**
 
 *The password can be modified after entering the webpage. If you forget the password, please contact Aceinna technical team.*
+
+Firmware Update
+~~~~~~~~~~~~~~~
+
+Enter the IP address in the browser (Chrome is recommended), then enter the user name and password, and select 
+the firmware upgrade to enter the following page.
+
+.. figure:: media/firmware_update1.png
+    :align: center
+
+Select the firmware to be upgraded, as shown in the figure below.
+
+.. figure:: media/firmware_update2.png
+    :align: center
+
+Click [Install] to upgrade the firmware, and click Reboot to restart after the upgrade.
+
+.. figure:: media/firmware_update3.png
+    :align: center
 

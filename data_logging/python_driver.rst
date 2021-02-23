@@ -1,77 +1,59 @@
 Python Driver
 ==============
 
-Python driver for OpenIMU, OpenRTK and INS2000
+Python driver is developed for OpenIMU, OpenRTK and INS2000.
 
-Working Environment
--------------------
+Working Environment and Dependency Library Installation
+---------------------------------------------------------
 
 -  Windows10: python2.7 and python 3.7
 -  Mac OS: python2.7 and python 3.7
 
-Steps
------
+Install the dependency library. It is better to create a virtual environments before to do it.
 
-1. Start the tool
-~~~~~~~~~~~~~~~~~
-
-There are 2 ways to run the tool
-
-Prepare
-^^^^^^^
-
-Install the dependency library. It is better to create a virtual
-environments before to do it.
-
-python 3.x
+For python 3.x
 
 ::
 
     pip install -r requirements.txt
 
-python 2.x
+For python 2.x
 
 ::
 
     pip install -r requirements-2.x.txt
 
-A. From source code
-^^^^^^^^^^^^^^^^^^^
+Data logging
+------------
 
-Run
-'''
+**configuration file**
 
-Please use this way if you want to develop the project.
+You can send commands to Ins2000 through the configuration file. You can open the configuration file and 
+modify 'setupcommands' list add commands you want to send. Configuration file path.
+
+::
+
+    ./setting/INS2000/INS2000.json
+
+**Run from source code**
 
 ::
 
     python main.py
 
-B. Work as execution file
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Build
-'''''
-
-It will be generated in ``dist`` folder.
+**Run from execution file**
 
 ::
 
     pyinstaller build.spec
 
-Run it
-''''''
-
 ::
 
     ./ans-devices
 
-Startup Arguments
-'''''''''''''''''
+You can specify some arguments while run the tool.
 
-You can specify some arguments while run the tool
-
-parameters:
+**parameters:**
 
 +-----------------------+-----------+-----------+---------------------------------------------+
 | Name                  | Type      | Default   | Description                                 |
@@ -99,16 +81,10 @@ parameters:
 | --cli                 | Boolean   | False     | Work as command line mode                   |
 +-----------------------+-----------+-----------+---------------------------------------------+
 
-2. Connect Aceinna device
-~~~~~~~~~~~~~~~~~~~~~~~~~
+**Connect Aceinna device**
 
 Link device to your pc or mac. And the tool will auto detect the linked
 device.
-
-.. `More Usage <usage.rst>`__
-
-Work Mode
----------
 
 Normally, python-openimu works as Web mode. It will auto start a
 websocket server after device is detected. And it can works with `aceinna
@@ -148,11 +124,8 @@ Commnad List:
 +-------------+-----------------------------------------------------------+
 
 
-Decoding tool
+Data Decoding
 -------------
-
-Decoding INS2000
-~~~~~~~~~~~~~~~~
 
 1. Run the decoding program
 
@@ -176,74 +149,3 @@ Decoding INS2000
          -h, --help  show this help message and exit
          -f F        The file to be decoded
          -c C        Decoding configuration file
-
-Changelogs and Release Notes
-----------------------------
-
-.. `HISTORY <history.rst>`__
-
-**2.2.4 / 2020-12-18**
-
--  [OpenRTK] Remove console print and add print.log to save these
-   infomation.
--  [OpenRTK] Update openrtk parse to make kml files
-
-**2.2.3 / 2020-12-01**
-
--  [OpenRTK] Update Configuration read size
--  [Framework] Fix cannot parse 'sC', 'uB' command
-
-**2.2.2 / 2020-11-26**
-
--  [OpenIMU] Add exception handler when log data, although file is
-   closed
--  [OpenIMU] Add uC,uA,gA command response
--  [OpenRTK] Fix upgrade issue through web
-
-**2.2.1 / 2020-11-17**
-
--  [OpenIMU] Fix the mag align command cannot correctly response.
--  [Framework] Update the usage of asyncio.
--  [Framework] Fix cannot connect the websocket server on some versions
-   of windows.
--  [Framework] Support to start executor as a cli tool with startup
-   parameter ``--cli``.
--  [Framework] Fix data log will auto start after firmware upgrade
-   without setting auto start.
-
-**2.2.0 / 2020-11-9**
-
--  [OpenRTK] Important update for INS App v23.00, can't suitable for
-   v2.0.0 or v20.00.
--  [OpenRTK] Modify user data packets.
--  [OpenRTK] Log base rtcm data on debug port.
--  [DMU] Add A1,A2 packet response for DUM device.
--  [Framework] Add Unit test cases.
-
-**2.1.7 / 2020-08-26**
-
--  [OpenRTK] Print 'NMEA' and #INSPVA.
--  [Framework] Improved the ping perform on devices.
-
-**2.1.6 / 2020-08-19**
-
--  [OpenRTK] Modify INS json: suitable for INS\_APP v2.0.0.
--  [Framework] Improve the output of console.
-
-**2.1.5 / 2020-08-11**
-
--  [Framework] Support download combined GNSS\_RTK\_SDK and INS\_APP
-   Firmware.
--  [Framework] Display python driver version.
--  [Framework] Remove upgrade file when upgrade firmware.
-
-**2.1.4 / 2020-07-23**
-
--  [OpenRTK] Add 'rD' command to restore OpenRTK330 default
-   configuration. User can find 'RESTORE DEFAULTS' button in
-   OpenRTK->SETTINGS.
--  [OpenRTK] Add 'gB' command to get configuration according to range of
-   parameterID.
--  [OpenRTK] Support update GNSS\_RTK\_SDK in App Center.
--  [Framework] Enhance the message parser from device.
-
