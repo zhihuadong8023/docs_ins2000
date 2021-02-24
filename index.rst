@@ -23,7 +23,7 @@ are also supported.
 
 .. toctree::
     :caption: INS2000 User Manual
-    :maxdepth: 1
+    :maxdepth: 3
     :hidden:
     :titlesonly:
 
