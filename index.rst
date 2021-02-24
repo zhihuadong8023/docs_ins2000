@@ -25,7 +25,6 @@ are also supported.
     :caption: INS2000 User Manual
     :maxdepth: 3
     :hidden:
-    :titlesonly:
 
     intro
     hardware_description

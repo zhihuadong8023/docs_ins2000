@@ -1,5 +1,5 @@
 Hardware Description
-~~~~~~~~~~~~~~~~~~~~
+====================
 
 Physical Specification
 ^^^^^^^^^^^^^^^^^^^^^^^
