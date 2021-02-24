@@ -19,10 +19,10 @@ are also supported.
 
 .. raw:: latex
 
-   \part{About INS2000}
+   \part{INS2000 Introduction}
 
 .. toctree::
-    :caption: About INS2000
+    :caption: Introduction
     :maxdepth: 1
     :hidden:
     :titlesonly:
@@ -31,25 +31,85 @@ are also supported.
 
 .. raw:: latex
 
-   \part{Quick Start}
+   \part{Hardware Description}
 
 .. toctree::
-    :caption: Quick Start
+    :caption: Hardware Description
     :maxdepth: 3
     :hidden:
     :titlesonly:
 
-    quick_start
-    configuration
-    vehicle_installation
-    data_logging
+    hardware_description
 
-.. .. toctree::
-    :caption: INS2000 Developer Manual
+.. raw:: latex
+
+   \part{Hardware Setup}
+
+.. toctree::
+    :caption: Hardware Setup
+    :maxdepth: 2
+    :hidden:
+    :titlesonly:
+
+    hardware_setup
+
+.. raw:: latex
+
+   \part{PC Requirement and Network Port Connection}
+
+.. toctree::
+    :caption: PC Requirement and Network Port Connection
     :maxdepth: 1
+    :hidden:
+    :titlesonly:
 
-..    user_outline
-    base_outline
-    ref_outline
-    system_setup_guide
+    PC_network_port
+
+.. raw:: latex
+
+   \part{Firmware Update}
+
+.. toctree::
+    :caption: Firmware Update
+    :maxdepth: 1
+    :hidden:
+    :titlesonly:
+
+    firmware_update
+
+.. raw:: latex
+
+   \part{Vehicle Installation}
+
+.. toctree::
+    :caption: Vehicle Installation
+    :maxdepth: 1
+    :hidden:
+    :titlesonly:
+
+    vehicle_installation
+
+.. raw:: latex
+
+   \part{Conguration}
+
+.. toctree::
+    :caption: Conguration
+    :maxdepth: 3
+    :hidden:
+    :titlesonly:
+
+    conguration
+
+.. raw:: latex
+
+   \part{Data Logging and Decoding}
+
+.. toctree::
+    :caption: Data Logging and Decoding
+    :maxdepth: 3
+    :hidden:
+    :titlesonly:
+
+    data_logging
     
