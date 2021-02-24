@@ -1,5 +1,3 @@
-**Note: if the figures are blur, click on the figure to see the clearer version**
-
 Hardware Description
 ~~~~~~~~~~~~~~~~~~~~
 

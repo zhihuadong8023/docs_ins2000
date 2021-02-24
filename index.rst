@@ -33,5 +33,5 @@ are also supported.
     PC_network_port
     firmware_update
     vehicle_installation
-    conguration
+    configuration
     data_logging
