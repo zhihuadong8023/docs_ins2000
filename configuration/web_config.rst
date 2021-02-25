@@ -1,11 +1,11 @@
 Web configuration
-~~~~~~~~~~~~~~~~~
+=================
 
 Integrated Navigation Configuration
-===================================
+-----------------------------------
 
 Coordinate System
------------------
+~~~~~~~~~~~~~~~~~
 
 The board coordinate system uses right-front-up (right-hand coordinate system), and the carrier coordinate system is 
 also right-front-up. The positive and negative directions are determined by the right-hand rule. The coordinate system 
@@ -15,7 +15,7 @@ is shown in the figure:
    :align: center
 
 Set INS Mounting Angles
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Since the coordinate system of the board and the car body may not coincide during use, the *SETINSROTATION* command needs 
 to be used to set the rotation vector (installation angle, RBV) between the board and the car body. The board is rotated 
@@ -28,7 +28,7 @@ When the IMU is placed in the car body as shown in the figure abrove, the IMU is
 positive direction, and the IMU coordinate system is completely coincident with the car body coordinate system.
 
 Set INS Lever Arm
------------------
+~~~~~~~~~~~~~~~~~
 
 Since the center of gravity of the board and antenna may not coincide during use, the offset vector (lever arm) parameter 
 needs to be configured through the *SETINSTRANSLATION* command.
@@ -53,7 +53,7 @@ placed IMU. It can be seen from the above figure that the slave antenna is 1 met
 according to the lever arm parameters configured here.*
 
 RTK Configuration
-=================
+-----------------
 
 The first time you enter the webpage, there will be a base station and mobile station configuration guide. If you enter it 
 for the second time or more, you can select the gear in the upper right corner to export the interface.
@@ -62,7 +62,7 @@ for the second time or more, you can select the gear in the upper right corner t
    :align: center
 
 Set up base station
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 INS2000 can be used as base station. The configuration procedure is as follows.
 
@@ -77,7 +77,7 @@ The second step is to configure the output protocol and port.
    :align: center
 
 Set up rover station
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Let’s now configure INS2000 as rover with the commonly used CORS station technology, taking Aceinna’s Ntrip as 
 an example.
@@ -106,7 +106,7 @@ There are two ways for this product to connect to the Internet:
      :align: center
 
 Data Output Configuration
-=========================
+-------------------------
 
 Enter the IO configuration interface from the web page to select different ports for output configuration.
 

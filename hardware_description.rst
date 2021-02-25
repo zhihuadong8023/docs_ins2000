@@ -48,6 +48,11 @@ Interface
 |   | SAT                  | Satellite indicator                       | Refer to the table below |
 +---+----------------------+-------------------------------------------+--------------------------+
 
+.. figure:: media/pin_MGG.png
+    :align: center
+    :height: 2.4in
+    :width: 4.5in
+
 10-pin MGG connector pin function
 ---------------------------------
 

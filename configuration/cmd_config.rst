@@ -1,8 +1,8 @@
 Command line configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 Integrated Navigation Configuration
-===================================
+-----------------------------------
 
 The serial port configuration command is as follow.
 
@@ -33,7 +33,7 @@ The slave antenna is 1m directly in front of the main antenna, the configuration
 **SETINSTRANSLATION DUALANT 0 1 0**
 
 RTK Configuration
-=================
+-----------------
 
 When the INS2000 is configured as a rover station, it can receive RTCM data through multiple ports such as Ethernet, serial port, 
 USB, etc., and can input multiple sets of RTCM data at the same time, and the receiver is connected to the built-in distribution.
@@ -57,7 +57,7 @@ The configuration command is as follows:
 **NTRIPCONFIG DTU1 client V1 60.205.8.49:8002 RTCM32_GGB user password**
 
 Data Output Configuration
-===========================
+-------------------------
 
 Support integrated navigation information:
 
