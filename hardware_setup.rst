@@ -1,9 +1,6 @@
 Hardware Setup
 ~~~~~~~~~~~~~~
 
-.. figure:: media/connection.png
-    :align: center
-
 Prerequisites
 ^^^^^^^^^^^^^
 
