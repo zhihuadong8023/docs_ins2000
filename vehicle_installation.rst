@@ -1,5 +1,5 @@
-INS2000 Vehicle Installation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Vehicle Installation
+^^^^^^^^^^^^^^^^^^^^
 
 We give a schematic diagram for the scene where the product is installed on the car.
 

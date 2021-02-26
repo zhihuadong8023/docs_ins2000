@@ -1,5 +1,5 @@
-INS2000 Data Logging and Decoding
-=================================
+Data Logging and Decoding
+=========================
 
 There are two types of data logging and decoding methods provided to save and decode INS2000 data: 
 python driver and RTKlib tools.

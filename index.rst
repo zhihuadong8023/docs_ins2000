@@ -19,10 +19,10 @@ are also supported.
 
 .. raw:: latex
 
-   \part{INS2000 User Manual}
+   \part{INS2000 Developer Manual}
 
 .. toctree::
-    :caption: INS2000 User Manual
+    :caption: INS2000 Developer Manual
     :maxdepth: 3
     :hidden:
 
