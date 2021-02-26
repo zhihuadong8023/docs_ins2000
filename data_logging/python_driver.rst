@@ -148,3 +148,48 @@ Data Decoding
          -h, --help  show this help message and exit
          -f F        The file to be decoded
          -c C        Decoding configuration file
+
+Data Display
+------------
+
+After running main.py, you can see the following page.
+
+.. figure:: ../media/data_display1.png
+   :alt: center
+
+Open the website `aceinna developers site <https://developers.aceinna.com>`_  and enter the following page.
+
+.. figure:: ../media/data_display2.png
+   :alt: center
+
+Click the icon in the red box above, and select Devices in the left column, and then select OpenRTK, as shown 
+in the figure below.
+
+.. figure:: ../media/data_display3.png
+   :alt: center
+
+Enter the page below and click the play button.
+
+.. figure:: ../media/data_display4.png
+   :alt: center
+
+As shown in the following two figures, you can see the dynamic trajectory of the INS2000 real-time data under 
+the satellite map, as well as the acceleration and angular-rate in the X, Y, and Z directions.
+
+.. figure:: ../media/data_display5.png
+   :alt: center
+
+
+.. figure:: ../media/data_display6.png
+   :alt: center
+
+If you cannot click the play button, or there is no response after clicking, you need to check the port number 
+in the red circle in the first figure, and then click the button in the red box in the figure below.
+
+.. figure:: ../media/data_display7.png
+   :alt: center
+
+Edit the port number in the pop-up page to be consistent with the port number in the red circle in the first figure.
+
+.. figure:: ../media/data_display8.png
+   :alt: center
