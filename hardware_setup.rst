@@ -6,8 +6,6 @@ Prerequisites
 
 .. image:: media/INS2000box.png
    :align: center
-   :width: 4.0in
-   :height: 3.0in
 
 +------+--------------------------+----------+----------------------------------------------+
 |Number|  Name                    | Quantity | Remarks                                      |

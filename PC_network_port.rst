@@ -11,7 +11,7 @@ successful serial port recognition will be displayed in the computer's device ma
 area network (connect to the same router). After the physical connection is normal, the receiver will automatically 
 try to obtain an available IP.
 
-3. Obtain IP information. Using the serial port tool, select the corresponding serial port, and select **460800** for the serial port baud rate. 
+3. Obtain IP information. Using the serial port tool, select the corresponding serial port, and select **115200** for the serial port baud rate. 
 Send the **netconfig** command line in the command window to get the board IP information.
 
  .. figure:: media/ip_info.png
